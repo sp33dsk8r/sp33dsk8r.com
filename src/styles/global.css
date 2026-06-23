@@ -6,6 +6,11 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.prose h1, .prose h2 {
-  color: #ffd700;
-}
+.speed-black { background-color: #0a0a0a; color: white; }
+.speed-yellow { color: #ffd700; }
+.speed-blue { color: #002868; }
+.speed-red { color: #bf0a30; }
+
+.bg-speedBlack { background-color: #0a0a0a; }
+.text-speedYellow { color: #ffd700; }
+.border-speedYellow { border-color: #ffd700; }
