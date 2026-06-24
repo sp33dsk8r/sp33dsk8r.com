@@ -6,18 +6,20 @@ Training began in late November with disciplined indoor sessions on the trainer.
 
 **Training Phases**
 
-| Phase              | Timeline          | Focus Areas                          | Key Activities                     |
-|--------------------|-------------------|--------------------------------------|------------------------------------|
-| Base Building     | Late Nov – Jan   | Indoor consistency, aerobic foundation | Trainer rides, strength work      |
-| Transition & Ramp | February         | Outdoor adaptation, saddle fit       | Progressive outdoor miles         |
-| Peak Endurance    | March – April    | Long rides, recovery integration    | 6+ hour efforts, cross-training   |
-| Taper & Event     | Late April – May | Sharpening & execution              | Final adjustments, race day       |
+
+| Phase             | Timeline         | Focus Areas                            | Key Activities                  |
+| ----------------- | ---------------- | -------------------------------------- | ------------------------------- |
+| Base Building     | Late Nov – Jan   | Indoor consistency, aerobic foundation | Trainer rides, strength work    |
+| Transition & Ramp | February         | Outdoor adaptation, saddle fit         | Progressive outdoor miles       |
+| Peak Endurance    | March – April    | Long rides, recovery integration       | 6+ hour efforts, cross-training |
+| Taper & Event     | Late April – May | Sharpening & execution                 | Final adjustments, race day     |
+
 
 **Key Gear & Adaptations**
 
 - **Trek Domane (upright road bike)**: Primary training steed. I made careful position tweaks—saddle height, fore-aft, and tilt—to optimize hip stability and power transfer. Post-THR emphasis on adductor and abductor strength helped maintain balance and prevent issues.
 - **2020 Cruzbike Vendetta V20 (recumbent)**: Reserved mainly for event day. Equipped with Dura-Ace R9000 components, it delivered unmatched comfort and efficiency for the long haul.
-- **Inline Skating**: Heavy use of my Riivo carbon fiber skates and FR1 325s provided excellent low-impact cross-training. Skating built leg strength, balance, and cardio without stressing my hips.
+- **Inline Skating**: Heavy use of my EdgeTek carbon fiber skates and FR1 325s provided excellent low-impact cross-training. Skating built leg strength, balance, and cardio without stressing my hips.
 
 These smart adaptations reflected a data-driven, n=1 approach—listening to my body, tracking recovery with cold plunges and sauna sessions, and fueling intentionally around my protocols. The ride itself was a powerful reminder of why we train: camaraderie on the road, supportive rest stops, and the shared purpose of advancing MS research.
 
