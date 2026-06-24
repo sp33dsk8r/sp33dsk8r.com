@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 const { title } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <!doctype html>
@@ -14,14 +15,14 @@ const { title } = Astro.props;
 <body class="bg-speedBlack text-white font-sans leading-relaxed">
   <nav class="border-b border-gray-700 bg-speedBlack/95 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-      <a href="/" class="flex items-center gap-3 text-3xl font-bold tracking-tighter text-speedYellow">
+      <a href={base} class="flex items-center gap-3 text-3xl font-bold tracking-tighter text-speedYellow">
         SPEEDSK8R
       </a>
       <div class="flex gap-8 text-lg font-medium">
-        <a href="/" class="hover:text-speedYellow transition">Home</a>
-        <a href="/gear" class="hover:text-speedYellow transition">Gear</a>
-        <a href="/about" class="hover:text-speedYellow transition">About</a>
-        <a href="/community" class="hover:text-speedYellow transition">Community</a>
+        <a href={base} class="hover:text-speedYellow transition">Home</a>
+        <a href={`${base}gear`} class="hover:text-speedYellow transition">Gear</a>
+        <a href={`${base}about`} class="hover:text-speedYellow transition">About</a>
+        <a href={`${base}community`} class="hover:text-speedYellow transition">Community</a>
       </div>
     </div>
   </nav>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <Layout title="sp33dsk8r | Speedskating &amp; Fitness">
@@ -14,8 +15,8 @@ import Layout from '../layouts/Layout.astro';
           Houston speedskating • Fitness • Recreational skating community
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/gear" class="bg-speedYellow hover:bg-yellow-400 text-black font-semibold px-10 py-4 rounded-xl text-lg transition">Shop Gear</a>
-          <a href="/community" class="border border-speedYellow hover:bg-speedYellow hover:text-black font-semibold px-10 py-4 rounded-xl text-lg transition">Join the Community</a>
+          <a href={`${base}gear`} class="bg-speedYellow hover:bg-yellow-400 text-black font-semibold px-10 py-4 rounded-xl text-lg transition">Shop Gear</a>
+          <a href={`${base}community`} class="border border-speedYellow hover:bg-speedYellow hover:text-black font-semibold px-10 py-4 rounded-xl text-lg transition">Join the Community</a>
         </div>
       </div>
     </section>
@@ -23,15 +24,15 @@ import Layout from '../layouts/Layout.astro';
     <!-- Quick Links -->
     <section class="py-20">
       <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-        <a href="/about" class="group p-8 border border-gray-800 hover:border-speedYellow rounded-3xl transition">
+        <a href={`${base}about`} class="group p-8 border border-gray-800 hover:border-speedYellow rounded-3xl transition">
           <h3 class="text-2xl font-semibold mb-4">About Speedskating</h3>
           <p class="text-gray-400">Learn the sport, its benefits, and why it’s one of the best full-body workouts.</p>
         </a>
-        <a href="/gear" class="group p-8 border border-gray-800 hover:border-speedYellow rounded-3xl transition">
+        <a href={`${base}gear`} class="group p-8 border border-gray-800 hover:border-speedYellow rounded-3xl transition">
           <h3 class="text-2xl font-semibold mb-4">Gear &amp; Equipment</h3>
           <p class="text-gray-400">Recommendations for skates, protective gear, clothing, and must-haves.</p>
         </a>
-        <a href="/community" class="group p-8 border border-gray-800 hover:border-speedYellow rounded-3xl transition">
+        <a href={`${base}community`} class="group p-8 border border-gray-800 hover:border-speedYellow rounded-3xl transition">
           <h3 class="text-2xl font-semibold mb-4">Community &amp; Events</h3>
           <p class="text-gray-400">Houston area sessions, training groups, MS150, and more.</p>
         </a>
