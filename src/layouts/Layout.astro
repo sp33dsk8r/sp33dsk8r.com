@@ -9,15 +9,15 @@ const { title } = Astro.props;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
-  <meta name="description" content="Houston speedskating community • Fitness &amp; recreational skating with sp33dsk8r" />
+  <meta name="description" content="Houston speedskating community • Fitness & recreational skating with sp33dsk8r" />
 </head>
-<body class="bg-speedBlack text-white font-sans">
-  <nav class="border-b border-gray-800 bg-speedBlack/80 backdrop-blur-md sticky top-0 z-50">
+<body class="bg-speedBlack text-white font-sans leading-relaxed">
+  <nav class="border-b border-gray-700 bg-speedBlack/95 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-      <a href="/" class="flex items-center gap-3 text-2xl font-bold tracking-tighter">
-        <span class="text-speedYellow">SPEED</span>SK8R
+      <a href="/" class="flex items-center gap-3 text-3xl font-bold tracking-tighter text-speedYellow">
+        SPEEDSK8R
       </a>
-      <div class="flex gap-8 text-lg">
+      <div class="flex gap-8 text-lg font-medium">
         <a href="/" class="hover:text-speedYellow transition">Home</a>
         <a href="/gear" class="hover:text-speedYellow transition">Gear</a>
         <a href="/about" class="hover:text-speedYellow transition">About</a>
@@ -25,10 +25,12 @@ const { title } = Astro.props;
       </div>
     </div>
   </nav>
+
   <slot />
-  <footer class="border-t border-gray-800 py-12 mt-20">
+
+  <footer class="border-t border-gray-700 py-12 mt-20 bg-speedBlack">
     <div class="max-w-6xl mx-auto px-6 text-center text-gray-400">
-      <p>&copy; 2026 sp33dsk8r.com • Built with ❤️ for the Houston skating community</p>
+      <p>© 2026 sp33dsk8r.com • Built with ❤️ for the Houston skating community</p>
     </div>
   </footer>
 </body>

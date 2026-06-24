@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        speedBlack: '#0a0a0a',
+        speedBlack: '#2d2d2d',
         speedYellow: '#ffd700',
         speedBlue: '#002868',
         speedRed: '#bf0a30',
