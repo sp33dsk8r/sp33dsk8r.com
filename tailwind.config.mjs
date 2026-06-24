@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+import typography from '@tailwindcss/typography';
+
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}', './docs/**/*.md'],
   theme: {
     extend: {
       colors: {
@@ -10,5 +12,6 @@ export default {
         speedRed: '#bf0a30',
       }
     }
-  }
+  },
+  plugins: [typography],
 }

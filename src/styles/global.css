@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .prose table {
+    @apply w-full min-w-[640px] border-collapse table-fixed;
+  }
+
+  .prose thead {
+    @apply border-b border-gray-600;
+  }
+
+  .prose th {
+    @apply px-4 py-3 text-left font-semibold text-speedYellow;
+  }
+
+  .prose th:nth-child(1),
+  .prose td:nth-child(1) {
+    @apply w-[18%];
+  }
+
+  .prose th:nth-child(2),
+  .prose td:nth-child(2) {
+    @apply w-[18%];
+  }
+
+  .prose th:nth-child(3),
+  .prose td:nth-child(3) {
+    @apply w-[32%];
+  }
+
+  .prose th:nth-child(4),
+  .prose td:nth-child(4) {
+    @apply w-[32%];
+  }
+
+  .prose td {
+    @apply border-t border-gray-700 px-4 py-3 align-top;
+  }
+
+  .prose tbody tr:hover {
+    @apply bg-white/5;
+  }
+}
