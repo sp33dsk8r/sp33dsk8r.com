@@ -42,4 +42,8 @@
   .prose tbody tr:hover {
     @apply bg-white/5;
   }
+
+  .prose img {
+    @apply rounded-xl w-full my-8;
+  }
 }
