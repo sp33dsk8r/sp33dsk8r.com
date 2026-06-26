@@ -17,6 +17,6 @@ Drop your photos in this folder. The gear page looks for these filenames:
 ## Clothing & accessories
 - `skating-kit.jpg`
 
-Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp`
+Supported formats: `.jpg`, `.jpeg`, `.png`, `.webp` — any of these extensions work.
 
 You can add or remove items by editing the `gearItems` list in `src/pages/gear.astro`.
