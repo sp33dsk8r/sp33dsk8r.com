@@ -1,17 +1,103 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const gearSections = [
+  {
+    title: 'Skates',
+    items: [
+      {
+        name: 'Riivo Carbon',
+        description: 'Lightweight carbon speed skates for serious fitness and race training.',
+        image: 'riivo-carbon',
+      },
+      {
+        name: 'EdgeTek Carbon',
+        description: 'Carbon fiber boots with excellent power transfer — a go-to for endurance sessions and cross-training.',
+        image: 'edgetek-carbon',
+      },
+      {
+        name: 'FR1 325',
+        description: 'Versatile recreational skates with a comfortable fit — great for urban fitness and everyday miles.',
+        image: 'fr1-325',
+      },
+    ],
+  },
+  {
+    title: 'Cycling',
+    items: [
+      {
+        name: 'Trek Domane',
+        description: 'Upright road bike for long training miles. Careful fit tweaks help protect the hips after THR.',
+        image: 'trek-domane',
+      },
+      {
+        name: 'Cruzbike Vendetta V20',
+        description: 'Recumbent setup reserved for event day — unmatched comfort and efficiency on the long haul.',
+        image: 'cruzbike-vendetta',
+      },
+    ],
+  },
+  {
+    title: 'Protective Gear',
+    items: [
+      {
+        name: 'Helmet, Pads & Guards',
+        description: 'Helmet, knee pads, wrist guards, and elbow pads — non-negotiable for safe skating sessions.',
+        image: 'protective-gear',
+      },
+    ],
+  },
+  {
+    title: 'Clothing & Accessories',
+    items: [
+      {
+        name: 'Skating Kit',
+        description: 'Moisture-wicking tops, fitted bottoms, and gloves for comfort in Houston heat.',
+        image: 'skating-kit',
+      },
+    ],
+  },
+];
+
 ---
 
 <Layout title="Gear &amp; Equipment - sp33dsk8r">
   <main class="bg-speedBlack text-white py-16">
-    <div class="max-w-4xl mx-auto px-6">
-      <h1 class="text-5xl font-bold mb-12">Gear &amp; Equipment</h1>
-      <p class="text-xl text-gray-300 mb-12">Recommendations for speedskating and fitness skating in Houston.</p>
-      <!-- Content placeholder -->
-      <div class="prose prose-invert max-w-none">
-        <h2>Skates</h2>
-        <p>Coming soon: Riivo carbon skates, upright vs recumbent, etc.</p>
-      </div>
+    <div class="max-w-6xl mx-auto px-6">
+      <h1 class="text-5xl font-bold mb-6">Gear &amp; Equipment</h1>
+      <p class="text-xl text-gray-300 mb-16 max-w-3xl">
+        Recommendations for speedskating and fitness skating in Houston — the skates, bikes, and kit I actually use.
+      </p>
+
+      {gearSections.map((section) => (
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-speedYellow">{section.title}</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {section.items.map((item) => (
+              <article class="group border border-gray-800 hover:border-speedYellow rounded-2xl overflow-hidden transition">
+                <div class="aspect-[4/3] bg-gray-900 relative overflow-hidden">
+                  <div class="absolute inset-0 flex items-center justify-center text-gray-500 text-sm px-6 text-center">
+                    Add <span class="font-mono text-gray-400 mx-1">{item.image}.jpg</span> to <span class="font-mono text-gray-400 mx-1">public/gear/</span>
+                  </div>
+                  <img
+                    src={`${base}gear/${item.image}.jpg`}
+                    alt={item.name}
+                    class="relative w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    loading="lazy"
+                    onerror="this.remove()"
+                  />
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">{item.name}</h3>
+                  <p class="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   </main>
 </Layout>
