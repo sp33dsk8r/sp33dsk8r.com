@@ -4,12 +4,13 @@ import { Content } from '../../docs/gear.md';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
-const photos = [
-  {
-    src: `${base}edgetek.jpeg`,
-    alt: 'EdgeTek carbon fiber inline skates',
-    caption: 'EdgeTek carbon fiber skates',
-  },
+const skatePhoto = {
+  src: `${base}edgetek.jpeg`,
+  alt: 'EdgeTek carbon fiber inline skates',
+  caption: 'EdgeTek carbon fiber skates',
+};
+
+const bikePhotos = [
   {
     src: `${base}v20.jpeg`,
     alt: 'Yellow Cruzbike Vendetta V20 recumbent',
@@ -28,20 +29,38 @@ const photos = [
     <div class="max-w-4xl mx-auto px-6">
       <h1 class="text-5xl font-bold mb-12">Gear &amp; Equipment</h1>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {photos.map((photo) => (
-          <figure class="border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
+      <div class="flex flex-col gap-6 mb-12">
+        <figure class="mx-auto w-full max-w-xs border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
+          <div class="h-56 flex items-center justify-center overflow-hidden">
             <img
-              src={photo.src}
-              alt={photo.alt}
-              class="w-full h-56 object-cover"
+              src={skatePhoto.src}
+              alt={skatePhoto.alt}
+              class="-rotate-90 object-contain max-h-52 w-auto"
               loading="lazy"
             />
-            <figcaption class="px-4 py-3 text-center text-sm text-gray-300">
-              {photo.caption}
-            </figcaption>
-          </figure>
-        ))}
+          </div>
+          <figcaption class="px-4 py-3 text-center text-sm text-gray-300">
+            {skatePhoto.caption}
+          </figcaption>
+        </figure>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          {bikePhotos.map((photo) => (
+            <figure class="border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
+              <div class="h-56 flex items-center justify-center overflow-hidden">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  class="w-full h-56 object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption class="px-4 py-3 text-center text-sm text-gray-300">
+                {photo.caption}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
 
       <div class="prose prose-invert max-w-none text-lg overflow-x-auto">
