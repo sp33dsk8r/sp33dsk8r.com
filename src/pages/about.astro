@@ -1,19 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import { Content } from '../../docs/about.md';
 ---
 
 <Layout title="About - sp33dsk8r">
   <main class="bg-speedBlack text-white py-16">
     <div class="max-w-4xl mx-auto px-6">
       <h1 class="text-5xl font-bold mb-12">About</h1>
-      <div class="prose prose-invert max-w-none text-lg">
-        <p>
-          Bryan “sp33dsk8r” Taylor is a passionate speedskater and cyclist based in Katy, Texas. A dedicated recreational and fitness skater, he trains regularly on FR recreational and EdgeTek carbon skates and enjoys cycling on both upright and recumbent setups. With a strong background in endurance cycling, Bryan has completed multiple MS150 rides to support MS research.
-        </p>
-        <p>
-          Whether on skates or his Cruzbike Vendetta V20, he’s committed to fitness, community, and pushing personal limits. Bryan believes in the power of movement for physical and mental health and loves sharing knowledge with the Houston skating and cycling community.
-        </p>
+      <div class="prose prose-invert max-w-none text-lg overflow-x-auto">
+        <Content />
       </div>
       <div class="mt-12 p-6 border border-gray-800 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <p class="text-gray-300">

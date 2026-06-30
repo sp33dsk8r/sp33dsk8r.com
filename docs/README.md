@@ -24,5 +24,6 @@ import { Content } from '../../docs/your-page.md';
 
 ## Current files
 
+- `about.md` — About page
 - `MS150_2026_Journey.md` — Community & Events page
 - `gear.md` — Gear & Equipment page
