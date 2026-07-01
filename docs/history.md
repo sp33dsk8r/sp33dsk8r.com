@@ -6,6 +6,7 @@ Born and raised in **Mississippi**, Bryan has called a few places home over the 
 | ------ | -------- | ----- |
 | — | Mississippi | Born and raised |
 | 1989–1992 | Michigan | |
+| 1992 | Mississippi | Moved back for 6 months |
 | 1993–1994 | Michigan | |
 | 1994–1996 | Mississippi | |
 | 1996–present | Texas | Katy / Houston metro area |
