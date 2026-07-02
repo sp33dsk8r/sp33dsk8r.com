@@ -27,3 +27,5 @@ import { Content } from '../../docs/your-page.md';
 - `about.md` — About page
 - `MS150_2026_Journey.md` — Community & Events page
 - `gear.md` — Gear & Equipment page
+- `places.md` — Places to Skate & Ride page
+- `places-questionnaire.md` — Optional questionnaire for expanding places content (also copied to `public/` for download)

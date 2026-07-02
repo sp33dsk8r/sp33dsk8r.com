@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Content } from '../../docs/places.md';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Places to Skate &amp; Ride - sp33dsk8r">
+  <main class="bg-speedBlack text-white py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-5xl font-bold mb-12">Places to Skate &amp; Ride</h1>
+      <div class="prose prose-invert max-w-none text-lg overflow-x-auto">
+        <Content />
+      </div>
+      <p class="mt-12 text-gray-400 text-base">
+        More group rides and events around Houston live on the
+        <a href={`${base}community`} class="text-speedYellow hover:underline">Community</a>
+        page. For what I'm rolling on at these spots, see
+        <a href={`${base}gear`} class="text-speedYellow hover:underline">Gear</a>.
+      </p>
+      <p class="mt-4 text-gray-400 text-base">
+        Have more detail to add?
+        <a href={`${base}places-questionnaire.md`} class="text-speedYellow hover:underline" download>
+          Download the places questionnaire
+        </a>
+        , fill it in, and send it back for an update.
+      </p>
+    </div>
+  </main>
+</Layout>
