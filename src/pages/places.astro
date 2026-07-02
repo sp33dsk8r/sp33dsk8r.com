@@ -5,6 +5,7 @@ import { Content } from '../../docs/places.md';
 import { googleMapsEmbedUrl, googleMapsUrl, parks } from '../data/places';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const mapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
 ---
 
 <Layout title="Places to Skate &amp; Ride - sp33dsk8r">
@@ -22,6 +23,9 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <MapSnapshot
               title={park.name}
               address={park.address}
+              lat={park.lat}
+              lng={park.lng}
+              zoom={park.zoom}
               embedUrl={googleMapsEmbedUrl(park.lat, park.lng, park.zoom)}
               mapsUrl={googleMapsUrl(park.lat, park.lng)}
             />
@@ -45,4 +49,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       </p>
     </div>
   </main>
+  {mapsApiKey ? (
+    <script define:vars={{ mapsApiKey }}>
+      import { initBikingMaps } from '../lib/bikingMaps';
+      initBikingMaps(mapsApiKey);
+    </script>
+  ) : null}
 </Layout>

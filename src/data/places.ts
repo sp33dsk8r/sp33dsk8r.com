@@ -12,8 +12,8 @@ export function googleMapsEmbedUrl(lat: number, lng: number, zoom = 14): string 
   return `https://www.google.com/maps?q=${lat},${lng}&hl=en&z=${zoom}&output=embed`;
 }
 
-export function googleMapsUrl(lat: number, lng: number): string {
-  return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+export function googleMapsUrl(lat: number, lng: number, zoom = 14): string {
+  return `https://www.google.com/maps/@${lat},${lng},${zoom}z/data=!5m1!1e4`;
 }
 
 export const parks: Park[] = [
