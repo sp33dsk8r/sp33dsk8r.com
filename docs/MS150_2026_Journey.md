@@ -1,6 +1,6 @@
 **My 2026 MS150 Journey: Training, Resilience, and Riding for a Cure**
 
-This spring marked my sixth MS150 ride since 2018. I skipped the canceled 2020 and 2021 events, but the fire to ride for a cure never dimmed. I pedaled in honor of my cousin’s sister-in-law, who continues to battle multiple sclerosis with remarkable courage. The ride represented more than miles—it embodied family legacy, personal resilience, and the “closer to the operator” ownership mindset I bring from my oilfield roots. Every training session and adjustment was about showing up prepared and giving my best for those who can’t.
+This spring marked my sixth MS150 ride since 2018. I skipped the canceled 2020 and 2021 events, but the fire to ride for a cure never dimmed. I pedaled in honor of my cousin’s sister-in-law, who continues to battle multiple sclerosis with remarkable courage. The ride represented more than miles—it embodied family legacy, personal resilience, and the ownership mindset I bring from my oilfield roots. Every training session and adjustment was about showing up prepared and giving my best for those who can’t.
 
 Training began in late November with Zwift indoor sessions on the trainer. I embraced the structure of a 12-week build, maintaining consistency even through the Christmas and New Year’s break with mostly indoor rides. By February, I transitioned to more outdoor miles, gradually ramping up to long endurance efforts exceeding six hours. The goal was never just to finish but to ride strong while protecting my body after my 2019 total hip replacement.
 
