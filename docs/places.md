@@ -8,4 +8,4 @@ The Katy and Houston metro area has no shortage of paved trails — these are th
 | Bear Creek Park | Skating | Loop to soccer fields; Clay to Patterson | Regular loop route |
 | Terry Hershey Park | Cycling & skating | West section (cycling); east toward Beltway 8 (skating) | Split use by section |
 | George Bush Park | Cycling (via TH) | Through Terry Hershey and back | ~**40 miles** round trip |
-| Cullen Park Trail | Skating & biking | Rough for skates; better on the bike | Daily (sometimes twice) when it was close |
+| Cullen Park Trail | Skating & biking | Rough for skates; better on the bike | Daily (sometimes twice) because it was close |
