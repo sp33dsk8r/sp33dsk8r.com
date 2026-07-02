@@ -29,3 +29,7 @@ import { Content } from '../../docs/your-page.md';
 - `gear.md` — Gear & Equipment page
 - `places.md` — Places to Skate & Ride page
 - `places-questionnaire.md` — Optional questionnaire for expanding places content (also copied to `public/` for download)
+
+## Places page maps
+
+Satellite + biking trail maps on `/places` use the Google Maps JavaScript API. Set `PUBLIC_GOOGLE_MAPS_API_KEY` in `.env` for local dev (see `.env.example`). For GitHub Pages, add the same value as a repository secret so the deploy workflow can bake it in at build time.

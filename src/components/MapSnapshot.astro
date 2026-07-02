@@ -1,24 +1,52 @@
 ---
 interface Props {
   title: string;
-  embedUrl: string;
+  lat: number;
+  lng: number;
+  zoom?: number;
   mapsUrl: string;
   address: string;
+  embedUrl: string;
 }
 
-const { title, embedUrl, mapsUrl, address } = Astro.props;
+const { title, lat, lng, zoom = 14, mapsUrl, address, embedUrl } = Astro.props;
+const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
+const useBikingMaps = Boolean(apiKey);
 ---
 
 <figure class="border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
-  <div class="aspect-video w-full">
-    <iframe
-      src={embedUrl}
-      title={`Google Maps location for ${title}`}
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      class="h-full w-full border-0"
-      allowfullscreen
-    />
+  <div class="aspect-video w-full relative bg-gray-900">
+    {useBikingMaps ? (
+      <>
+        <div
+          data-biking-map
+          data-lat={lat}
+          data-lng={lng}
+          data-zoom={zoom}
+          class="h-full w-full"
+          hidden
+          aria-label={`Satellite biking map for ${title}`}
+        />
+        <iframe
+          data-map-fallback
+          src={embedUrl}
+          title={`Loading map for ${title}`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="absolute inset-0 h-full w-full border-0"
+          allowfullscreen
+        />
+      </>
+    ) : (
+      <iframe
+        src={embedUrl}
+        title={`Google Maps location for ${title}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="h-full w-full border-0"
+        allowfullscreen
+      />
+    )}
   </div>
   <figcaption class="px-4 py-3 text-center text-sm text-gray-300">
     {address}
