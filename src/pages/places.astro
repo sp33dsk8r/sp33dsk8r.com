@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MapSnapshot from '../components/MapSnapshot.astro';
 import { Content } from '../../docs/places.md';
+import { googleMapsEmbedUrl, googleMapsUrl, parks } from '../data/places';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
@@ -12,6 +14,22 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="prose prose-invert max-w-none text-lg overflow-x-auto">
         <Content />
       </div>
+
+      <div class="mt-12 flex flex-col gap-16">
+        {parks.map((park) => (
+          <article>
+            <h2 class="text-3xl font-bold mb-6">{park.name}</h2>
+            <MapSnapshot
+              title={park.name}
+              address={park.address}
+              embedUrl={googleMapsEmbedUrl(park.lat, park.lng, park.zoom)}
+              mapsUrl={googleMapsUrl(park.lat, park.lng)}
+            />
+            <p class="mt-6 text-lg leading-relaxed text-gray-200" set:html={park.description} />
+          </article>
+        ))}
+      </div>
+
       <p class="mt-12 text-gray-400 text-base">
         More group rides and events around Houston live on the
         <a href={`${base}community`} class="text-speedYellow hover:underline">Community</a>
