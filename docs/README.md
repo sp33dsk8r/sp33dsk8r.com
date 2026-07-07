@@ -29,6 +29,7 @@ import { Content } from '../../docs/your-page.md';
 - `gear.md` — Gear & Equipment page
 - `places.md` — Places to Skate & Ride page
 - `places-questionnaire.md` — Optional questionnaire for expanding places content (also copied to `public/` for download)
+- `vacations.md` — Vacation Spots page intro (spot listings live in `src/data/vacations.ts`)
 
 ## Places page maps
 
