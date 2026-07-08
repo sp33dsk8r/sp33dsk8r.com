@@ -18,6 +18,36 @@ export function googleMapsUrl(lat: number, lng: number, zoom = 12): string {
   return `https://www.google.com/maps/@${lat},${lng},${zoom}z`;
 }
 
+const MONTH_ORDER: Record<string, number> = {
+  Jan: 1,
+  Feb: 2,
+  Mar: 3,
+  Apr: 4,
+  May: 5,
+  Jun: 6,
+  Jul: 7,
+  Aug: 8,
+  Sep: 9,
+  Oct: 10,
+  Nov: 11,
+  Dec: 12,
+};
+
+/** Parses values like "Jul 2024" into a sortable key (newer = larger). */
+export function whenSortKey(when?: string): number {
+  if (!when) return 0;
+
+  const match = when.trim().match(/^([A-Za-z]{3})\s+(\d{4})$/);
+  if (!match) return 0;
+
+  const month = MONTH_ORDER[match[1]] ?? 0;
+  return Number(match[2]) * 100 + month;
+}
+
+export function sortVacationSpotsByWhenDesc(spots: VacationSpot[]): VacationSpot[] {
+  return [...spots].sort((a, b) => whenSortKey(b.when) - whenSortKey(a.when));
+}
+
 export const vacationSpots: VacationSpot[] = [
   {
     id: 'great-wolf-grapevine-2026',

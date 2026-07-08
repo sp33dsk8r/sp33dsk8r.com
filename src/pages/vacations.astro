@@ -5,11 +5,13 @@ import { Content } from '../../docs/vacations.md';
 import {
   googleMapsEmbedUrl,
   googleMapsUrl,
+  sortVacationSpotsByWhenDesc,
   vacationSpots,
 } from '../data/vacations';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const mapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
+const sortedVacationSpots = sortVacationSpotsByWhenDesc(vacationSpots);
 ---
 
 <Layout title="Vacation Spots - sp33dsk8r">
@@ -20,9 +22,9 @@ const mapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
         <Content />
       </div>
 
-      {vacationSpots.length > 0 ? (
+      {sortedVacationSpots.length > 0 ? (
         <div class="mt-12 flex flex-col gap-16">
-          {vacationSpots.map((spot) => (
+          {sortedVacationSpots.map((spot) => (
             <article class="border border-gray-800 rounded-2xl p-8 bg-gray-900/20">
               <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-4">
                 <h2 class="text-3xl font-bold">{spot.name}</h2>
@@ -65,7 +67,7 @@ const mapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
       )}
     </div>
   </main>
-  {mapsApiKey && vacationSpots.some((spot) => spot.lat != null && spot.lng != null) ? (
+  {mapsApiKey && sortedVacationSpots.some((spot) => spot.lat != null && spot.lng != null) ? (
     <script define:vars={{ mapsApiKey }}>
       import { initBikingMaps } from '../lib/bikingMaps';
       initBikingMaps(mapsApiKey);
