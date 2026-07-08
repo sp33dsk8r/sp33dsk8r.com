@@ -20,8 +20,8 @@ export const historyStops: HistoryStop[] = [
     city: 'Soso',
     location: 'Mississippi',
     notes: 'Born and raised',
-    lat: 31.7557,
-    lng: -89.5534,
+    lat: 31.7349,
+    lng: -89.3244,
   },
   {
     id: 'michigan-1989-1992',
