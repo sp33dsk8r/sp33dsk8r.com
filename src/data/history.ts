@@ -114,7 +114,9 @@ export const historyStops: HistoryStop[] = [
     city: 'Katy',
     location: 'Texas',
     notes: 'Katy / Houston metro area',
-    lat: 29.7858,
-    lng: -95.8244,
+    address: 'Katy City Park, Katy, TX',
+    lat: 29.802965,
+    lng: -95.822911,
+    zoom: 15,
   },
 ];
