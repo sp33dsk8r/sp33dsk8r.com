@@ -100,7 +100,7 @@ export const historyStops: HistoryStop[] = [
   },
   {
     id: 'texas-1996-houston',
-    period: 'Aug 1996',
+    period: 'Aug 1996–Dec 1998',
     city: 'Houston',
     location: 'Texas',
     notes: 'Based in 77084. Working 7/7 out of Grand Isle, LA.',
