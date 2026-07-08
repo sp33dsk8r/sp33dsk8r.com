@@ -6,6 +6,7 @@ export type HistoryStop = {
   city?: string;
   location: string;
   notes?: string;
+  address?: string;
   lat?: number;
   lng?: number;
   zoom?: number;
@@ -20,8 +21,10 @@ export const historyStops: HistoryStop[] = [
     city: 'Soso',
     location: 'Mississippi',
     notes: 'Born and raised',
-    lat: 31.7349,
-    lng: -89.3244,
+    address: '3382 Hwy 29 N, Soso, MS 39480',
+    lat: 31.751884,
+    lng: -89.274457,
+    zoom: 17,
   },
   {
     id: 'michigan-1989-1992',

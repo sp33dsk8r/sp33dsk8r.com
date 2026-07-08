@@ -16,7 +16,7 @@ function mapTitle(stop: (typeof historyStops)[number]): string {
 }
 
 function mapAddress(stop: (typeof historyStops)[number]): string {
-  return [stop.city, stop.location].filter(Boolean).join(', ');
+  return stop.address ?? [stop.city, stop.location].filter(Boolean).join(', ');
 }
 ---
 
