@@ -7,26 +7,55 @@ interface Props {
   mapsUrl: string;
   address: string;
   embedUrl: string;
+  variant?: 'biking' | 'satellite';
+  mapId?: string;
+  geocodeAddress?: string;
 }
 
-const { title, lat, lng, zoom = 14, mapsUrl, address, embedUrl } = Astro.props;
+const {
+  title,
+  lat,
+  lng,
+  zoom = 14,
+  mapsUrl,
+  address,
+  embedUrl,
+  variant = 'biking',
+  mapId,
+  geocodeAddress,
+} = Astro.props;
 const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
-const useBikingMaps = Boolean(apiKey);
+const useEnhancedMaps = Boolean(apiKey);
+const isSatellite = variant === 'satellite';
 ---
 
 <figure class="border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
   <div class="aspect-video w-full relative bg-gray-900">
-    {useBikingMaps ? (
+    {useEnhancedMaps ? (
       <>
-        <div
-          data-biking-map
-          data-lat={lat}
-          data-lng={lng}
-          data-zoom={zoom}
-          class="h-full w-full"
-          hidden
-          aria-label={`Satellite biking map for ${title}`}
-        />
+        {isSatellite ? (
+          <div
+            data-satellite-map
+            data-lat={lat}
+            data-lng={lng}
+            data-zoom={zoom}
+            data-map-id={mapId}
+            data-address={geocodeAddress}
+            class="h-full w-full"
+            hidden
+            aria-label={`Satellite map for ${title}`}
+          />
+        ) : (
+          <div
+            data-biking-map
+            data-lat={lat}
+            data-lng={lng}
+            data-zoom={zoom}
+            class="h-full w-full"
+            hidden
+            aria-label={`Satellite biking map for ${title}`}
+          />
+        )}
         <iframe
           data-map-fallback
           src={embedUrl}

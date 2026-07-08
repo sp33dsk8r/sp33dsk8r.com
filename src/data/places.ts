@@ -8,12 +8,40 @@ export type Park = {
   description: string;
 };
 
-export function googleMapsEmbedUrl(lat: number, lng: number, zoom = 14): string {
-  return `https://www.google.com/maps?q=${lat},${lng}&hl=en&z=${zoom}&output=embed`;
+export function googleMapsEmbedUrl(
+  lat: number,
+  lng: number,
+  zoom = 14,
+  mapType: 'roadmap' | 'satellite' | 'hybrid' = 'roadmap',
+  query?: string,
+): string {
+  const typeParam =
+    mapType === 'satellite' ? '&t=k' : mapType === 'hybrid' ? '&t=h' : '';
+  const q = query ? encodeURIComponent(query) : `${lat},${lng}`;
+  return `https://www.google.com/maps?q=${q}&hl=en&z=${zoom}${typeParam}&output=embed`;
 }
 
-export function googleMapsUrl(lat: number, lng: number, zoom = 14): string {
-  return `https://www.google.com/maps/@${lat},${lng},${zoom}z/data=!5m1!1e4`;
+export function googleMapsUrl(lat: number, lng: number, zoom = 14, query?: string): string {
+  if (query) {
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+  }
+  return `https://www.google.com/maps/@${lat},${lng},${zoom}z`;
+}
+
+export function googleMapsDirectionsUrl(origin: string, destination: string): string {
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=driving`;
+}
+
+export function googleMapsDirectionsEmbedUrl(
+  origin: string,
+  destination: string,
+  apiKey?: string,
+): string {
+  if (apiKey) {
+    return `https://www.google.com/maps/embed/v1/directions?key=${encodeURIComponent(apiKey)}&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&mode=driving`;
+  }
+
+  return `https://maps.google.com/maps?f=d&saddr=${encodeURIComponent(origin)}&daddr=${encodeURIComponent(destination)}&output=embed`;
 }
 
 export const parks: Park[] = [

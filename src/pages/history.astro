@@ -1,6 +1,59 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import DirectionsMap from '../components/DirectionsMap.astro';
+import MapSnapshot from '../components/MapSnapshot.astro';
 import { Content } from '../../docs/history.md';
+import {
+  googleMapsDirectionsEmbedUrl,
+  googleMapsDirectionsUrl,
+  googleMapsEmbedUrl,
+  googleMapsUrl,
+  historyStops,
+} from '../data/history';
+
+const mapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
+
+function stopHasMap(stop: (typeof historyStops)[number]): boolean {
+  if (stop.mapType === 'directions') {
+    return Boolean(stop.directionsFrom && stop.directionsTo);
+  }
+
+  return stop.lat != null && stop.lng != null;
+}
+
+const mappedStops = historyStops.filter(stopHasMap);
+const locationStops = mappedStops.filter((stop) => stop.mapType !== 'directions');
+const directionsStops = mappedStops.filter((stop) => stop.mapType === 'directions');
+
+const privateGeocodeById = Object.fromEntries(
+  locationStops
+    .filter((stop) => stop.hideAddress && stop.address)
+    .map((stop) => [stop.id, stop.address!]),
+);
+
+function mapTitle(stop: (typeof historyStops)[number]): string {
+  return [stop.city, stop.location].filter(Boolean).join(', ');
+}
+
+function mapDisplayAddress(stop: (typeof historyStops)[number]): string {
+  if (stop.hideAddress) {
+    return [stop.city, stop.location].filter(Boolean).join(', ');
+  }
+
+  return stop.address ?? [stop.city, stop.location].filter(Boolean).join(', ');
+}
+
+function mapEmbedQuery(stop: (typeof historyStops)[number]): string | undefined {
+  if (stop.hideAddress) {
+    return undefined;
+  }
+
+  return stop.address;
+}
+
+function routeLabel(stop: (typeof historyStops)[number]): string {
+  return `${stop.directionsFrom} → ${stop.directionsTo}`;
+}
 ---
 
 <Layout title="History - sp33dsk8r">
@@ -10,6 +63,87 @@ import { Content } from '../../docs/history.md';
       <div class="prose prose-invert max-w-none text-lg overflow-x-auto">
         <Content />
       </div>
+
+      <div class="mt-8 overflow-x-auto">
+        <table class="w-full min-w-[640px] border-collapse table-fixed text-lg">
+          <thead class="border-b border-gray-600">
+            <tr>
+              <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[18%]">Period</th>
+              <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[18%]">City</th>
+              <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[18%]">Location</th>
+              <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[46%]">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {historyStops.map((stop) => (
+              <tr class="border-t border-gray-700 hover:bg-white/5">
+                <td class="px-4 py-3 align-top">{stop.period}</td>
+                <td class="px-4 py-3 align-top text-gray-300">{stop.city ?? '—'}</td>
+                <td class="px-4 py-3 align-top">{stop.location}</td>
+                <td class="px-4 py-3 align-top text-gray-300">{stop.notes ?? '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {mappedStops.length > 0 ? (
+        <div class="mt-12 flex flex-col gap-16">
+          {mappedStops.map((stop) => (
+            <article>
+              <h2 class="text-3xl font-bold mb-2">{mapTitle(stop)}</h2>
+              <p class="text-gray-400 text-lg mb-6">{stop.period}</p>
+              {stop.mapType === 'directions' && stop.directionsFrom && stop.directionsTo ? (
+                <DirectionsMap
+                  title={mapTitle(stop)}
+                  origin={stop.directionsFrom}
+                  destination={stop.directionsTo}
+                  routeLabel={routeLabel(stop)}
+                  embedUrl={googleMapsDirectionsEmbedUrl(
+                    stop.directionsFrom,
+                    stop.directionsTo,
+                    mapsApiKey || undefined,
+                  )}
+                  directionsUrl={googleMapsDirectionsUrl(stop.directionsFrom, stop.directionsTo)}
+                />
+              ) : (
+                <MapSnapshot
+                  title={mapTitle(stop)}
+                  address={mapDisplayAddress(stop)}
+                  lat={stop.lat!}
+                  lng={stop.lng!}
+                  zoom={stop.zoom}
+                  variant="satellite"
+                  mapId={stop.hideAddress ? stop.id : undefined}
+                  geocodeAddress={stop.hideAddress ? undefined : stop.address}
+                  embedUrl={googleMapsEmbedUrl(
+                    stop.lat!,
+                    stop.lng!,
+                    stop.zoom ?? 12,
+                    'satellite',
+                    mapEmbedQuery(stop),
+                  )}
+                  mapsUrl={
+                    stop.hideAddress
+                      ? googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12)
+                      : googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12, stop.address)
+                  }
+                />
+              )}
+              {stop.notes ? (
+                <p class="mt-6 text-lg leading-relaxed text-gray-200">{stop.notes}</p>
+              ) : null}
+            </article>
+          ))}
+        </div>
+      ) : null}
     </div>
   </main>
+  {mapsApiKey && mappedStops.length > 0 ? (
+    <script define:vars={{ mapsApiKey, privateGeocodeById }}>
+      import { initDirectionsMaps, initSatelliteMaps } from '../lib/bikingMaps';
+      initSatelliteMaps(mapsApiKey, privateGeocodeById);
+      initDirectionsMaps(mapsApiKey);
+    </script>
+  ) : null}
 </Layout>
