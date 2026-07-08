@@ -61,6 +61,17 @@ export const vacationSpots: VacationSpot[] = [
     lng: -97.0789,
   },
   {
+    id: 'san-antonio-riverwalk-2025',
+    name: 'San Antonio Riverwalk',
+    location: 'San Antonio, TX',
+    when: 'Dec 2025',
+    description:
+      'Restaurants, holiday lights, Christmas music, and festive atmosphere along the river — probably best for an adult group or couple.',
+    highlights: ['Restaurants', 'Lights', 'Christmas', 'Music', 'Christmas atmosphere'],
+    lat: 29.4229,
+    lng: -98.4897,
+  },
+  {
     id: 'great-wolf-grapevine-2023',
     name: 'Great Wolf Resort',
     location: 'Grapevine, TX',
