@@ -114,9 +114,9 @@ export const historyStops: HistoryStop[] = [
     city: 'Katy',
     location: 'Texas',
     notes: 'Katy / Houston metro area',
-    address: 'Katy City Park, Katy, TX',
-    lat: 29.802965,
-    lng: -95.822911,
-    zoom: 15,
+    address: 'Katy Park ball fields, 24927 Morton Ranch Rd, Katy, TX 77493',
+    lat: 29.8158,
+    lng: -95.8042,
+    zoom: 16,
   },
 ];
