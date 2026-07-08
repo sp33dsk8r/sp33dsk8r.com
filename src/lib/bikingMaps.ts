@@ -87,7 +87,10 @@ export async function initBikingMaps(apiKey: string): Promise<void> {
   });
 }
 
-export async function initSatelliteMaps(apiKey: string): Promise<void> {
+export async function initSatelliteMaps(
+  apiKey: string,
+  privateGeocodeById: Record<string, string> = {},
+): Promise<void> {
   const containers = document.querySelectorAll<HTMLElement>('[data-satellite-map]');
   if (!containers.length || !apiKey) {
     return;
@@ -103,7 +106,9 @@ export async function initSatelliteMaps(apiKey: string): Promise<void> {
     const lat = Number(element.dataset.lat);
     const lng = Number(element.dataset.lng);
     const zoom = Number(element.dataset.zoom ?? 14);
-    const address = element.dataset.address?.trim();
+    const mapId = element.dataset.mapId?.trim();
+    const address =
+      (mapId && privateGeocodeById[mapId]) || element.dataset.address?.trim() || '';
 
     const renderMap = (center: { lat: number; lng: number }) => {
       const map = new window.google!.maps.Map(element, {

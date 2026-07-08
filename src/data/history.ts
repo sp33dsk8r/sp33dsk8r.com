@@ -7,6 +7,7 @@ export type HistoryStop = {
   location: string;
   notes?: string;
   address?: string;
+  hideAddress?: boolean;
   lat?: number;
   lng?: number;
   zoom?: number;
@@ -31,8 +32,11 @@ export const historyStops: HistoryStop[] = [
     period: '1989–1992',
     city: 'Williamsburg',
     location: 'Michigan',
-    lat: 44.773,
-    lng: -85.407,
+    address: '6482 Westridge Drive, Williamsburg, MI 49690',
+    hideAddress: true,
+    lat: 44.758,
+    lng: -85.4845,
+    zoom: 18,
   },
   {
     id: 'mississippi-1992',

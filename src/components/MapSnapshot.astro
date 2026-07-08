@@ -8,9 +8,22 @@ interface Props {
   address: string;
   embedUrl: string;
   variant?: 'biking' | 'satellite';
+  mapId?: string;
+  geocodeAddress?: string;
 }
 
-const { title, lat, lng, zoom = 14, mapsUrl, address, embedUrl, variant = 'biking' } = Astro.props;
+const {
+  title,
+  lat,
+  lng,
+  zoom = 14,
+  mapsUrl,
+  address,
+  embedUrl,
+  variant = 'biking',
+  mapId,
+  geocodeAddress,
+} = Astro.props;
 const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
 const useEnhancedMaps = Boolean(apiKey);
 const isSatellite = variant === 'satellite';
@@ -26,7 +39,8 @@ const isSatellite = variant === 'satellite';
             data-lat={lat}
             data-lng={lng}
             data-zoom={zoom}
-            data-address={address}
+            data-map-id={mapId}
+            data-address={geocodeAddress}
             class="h-full w-full"
             hidden
             aria-label={`Satellite map for ${title}`}

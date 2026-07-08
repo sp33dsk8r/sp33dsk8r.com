@@ -10,13 +10,30 @@ import {
 
 const mapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
 const mappedStops = historyStops.filter((stop) => stop.lat != null && stop.lng != null);
+const privateGeocodeById = Object.fromEntries(
+  mappedStops
+    .filter((stop) => stop.hideAddress && stop.address)
+    .map((stop) => [stop.id, stop.address!]),
+);
 
 function mapTitle(stop: (typeof historyStops)[number]): string {
   return [stop.city, stop.location].filter(Boolean).join(', ');
 }
 
-function mapAddress(stop: (typeof historyStops)[number]): string {
+function mapDisplayAddress(stop: (typeof historyStops)[number]): string {
+  if (stop.hideAddress) {
+    return [stop.city, stop.location].filter(Boolean).join(', ');
+  }
+
   return stop.address ?? [stop.city, stop.location].filter(Boolean).join(', ');
+}
+
+function mapEmbedQuery(stop: (typeof historyStops)[number]): string | undefined {
+  if (stop.hideAddress) {
+    return undefined;
+  }
+
+  return stop.address;
 }
 ---
 
@@ -59,19 +76,25 @@ function mapAddress(stop: (typeof historyStops)[number]): string {
               <p class="text-gray-400 text-lg mb-6">{stop.period}</p>
               <MapSnapshot
                 title={mapTitle(stop)}
-                address={mapAddress(stop)}
+                address={mapDisplayAddress(stop)}
                 lat={stop.lat!}
                 lng={stop.lng!}
                 zoom={stop.zoom}
                 variant="satellite"
+                mapId={stop.hideAddress ? stop.id : undefined}
+                geocodeAddress={stop.hideAddress ? undefined : stop.address}
                 embedUrl={googleMapsEmbedUrl(
                   stop.lat!,
                   stop.lng!,
                   stop.zoom ?? 12,
                   'satellite',
-                  stop.address,
+                  mapEmbedQuery(stop),
                 )}
-                mapsUrl={googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12, stop.address)}
+                mapsUrl={
+                  stop.hideAddress
+                    ? googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12)
+                    : googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12, stop.address)
+                }
               />
               {stop.notes ? (
                 <p class="mt-6 text-lg leading-relaxed text-gray-200">{stop.notes}</p>
@@ -83,9 +106,9 @@ function mapAddress(stop: (typeof historyStops)[number]): string {
     </div>
   </main>
   {mapsApiKey && mappedStops.length > 0 ? (
-    <script define:vars={{ mapsApiKey }}>
+    <script define:vars={{ mapsApiKey, privateGeocodeById }}>
       import { initSatelliteMaps } from '../lib/bikingMaps';
-      initSatelliteMaps(mapsApiKey);
+      initSatelliteMaps(mapsApiKey, privateGeocodeById);
     </script>
   ) : null}
 </Layout>
