@@ -32,10 +32,10 @@ export const historyStops: HistoryStop[] = [
     period: '1989–1992',
     city: 'Williamsburg',
     location: 'Michigan',
-    address: '6482 Westridge Drive, Williamsburg, MI 49690',
+    address: '4382 Westridge Drive, Williamsburg, MI 49684',
     hideAddress: true,
-    lat: 44.758,
-    lng: -85.4845,
+    lat: 44.749995,
+    lng: -85.484343,
     zoom: 18,
   },
   {
