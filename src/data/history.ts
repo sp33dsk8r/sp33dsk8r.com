@@ -110,7 +110,7 @@ export const historyStops: HistoryStop[] = [
   },
   {
     id: 'texas-1996-present',
-    period: '1996–present',
+    period: '2021–present',
     city: 'Katy',
     location: 'Texas',
     notes: 'Katy / Houston metro area',
