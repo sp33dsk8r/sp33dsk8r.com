@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  origin: string;
+  destination: string;
+  routeLabel: string;
+  embedUrl: string;
+  directionsUrl: string;
+}
+
+const { title, origin, destination, routeLabel, embedUrl, directionsUrl } = Astro.props;
+const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
+const useEnhancedMaps = Boolean(apiKey);
+---
+
+<figure class="border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
+  <div class="aspect-video w-full relative bg-gray-900">
+    {useEnhancedMaps ? (
+      <>
+        <div
+          data-directions-map
+          data-origin={origin}
+          data-destination={destination}
+          class="h-full w-full"
+          hidden
+          aria-label={`Driving directions for ${title}`}
+        />
+        <iframe
+          data-map-fallback
+          src={embedUrl}
+          title={`Driving directions for ${title}`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="absolute inset-0 h-full w-full border-0"
+          allowfullscreen
+        />
+      </>
+    ) : (
+      <iframe
+        src={embedUrl}
+        title={`Driving directions for ${title}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="h-full w-full border-0"
+        allowfullscreen
+      />
+    )}
+  </div>
+  <figcaption class="px-4 py-3 text-center text-sm text-gray-300">
+    <span data-directions-time class="text-speedYellow">{routeLabel}</span>
+    <span class="mx-2 text-gray-600" aria-hidden="true">·</span>
+    <a
+      href={directionsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-speedYellow hover:underline"
+    >
+      Open directions in Google Maps
+    </a>
+  </figcaption>
+</figure>

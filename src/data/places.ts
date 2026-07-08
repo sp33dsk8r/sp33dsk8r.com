@@ -28,6 +28,22 @@ export function googleMapsUrl(lat: number, lng: number, zoom = 14, query?: strin
   return `https://www.google.com/maps/@${lat},${lng},${zoom}z`;
 }
 
+export function googleMapsDirectionsUrl(origin: string, destination: string): string {
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=driving`;
+}
+
+export function googleMapsDirectionsEmbedUrl(
+  origin: string,
+  destination: string,
+  apiKey?: string,
+): string {
+  if (apiKey) {
+    return `https://www.google.com/maps/embed/v1/directions?key=${encodeURIComponent(apiKey)}&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&mode=driving`;
+  }
+
+  return `https://maps.google.com/maps?f=d&saddr=${encodeURIComponent(origin)}&daddr=${encodeURIComponent(destination)}&output=embed`;
+}
+
 export const parks: Park[] = [
   {
     id: 'john-paul-landing',

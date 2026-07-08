@@ -18,6 +18,24 @@ declare global {
             ) => void,
           ) => void;
         };
+        DirectionsService: new () => {
+          route: (
+            request: { origin: string; destination: string; travelMode: string },
+            callback: (
+              result: {
+                routes: Array<{
+                  legs: Array<{ duration: { text: string }; distance: { text: string } }>;
+                }>;
+              } | null,
+              status: string,
+            ) => void,
+          ) => void;
+        };
+        DirectionsRenderer: new (options: Record<string, unknown>) => {
+          setDirections: (directions: unknown) => void;
+          setMap: (map: unknown) => void;
+        };
+        TravelMode: { DRIVING: string };
       };
     };
   }
@@ -149,6 +167,65 @@ export async function initSatelliteMaps(
     }
 
     renderMap({ lat, lng });
+  });
+}
+
+export async function initDirectionsMaps(apiKey: string): Promise<void> {
+  const containers = document.querySelectorAll<HTMLElement>('[data-directions-map]');
+  if (!containers.length || !apiKey) {
+    return;
+  }
+
+  await loadGoogleMaps(apiKey);
+
+  if (!window.google?.maps) {
+    return;
+  }
+
+  containers.forEach((element) => {
+    const origin = element.dataset.origin?.trim();
+    const destination = element.dataset.destination?.trim();
+    const timeEl = element.closest('figure')?.querySelector<HTMLElement>('[data-directions-time]');
+
+    if (!origin || !destination) {
+      return;
+    }
+
+    const map = new window.google!.maps.Map(element, {
+      mapTypeId: window.google!.maps.MapTypeId.HYBRID,
+      disableDefaultUI: true,
+      zoomControl: true,
+      fullscreenControl: true,
+      gestureHandling: 'cooperative',
+    });
+
+    const directionsRenderer = new window.google!.maps.DirectionsRenderer({
+      map,
+      suppressMarkers: false,
+      preserveViewport: false,
+    });
+
+    new window.google!.maps.DirectionsService().route(
+      {
+        origin,
+        destination,
+        travelMode: window.google!.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status !== 'OK' || !result?.routes[0]?.legs[0]) {
+          return;
+        }
+
+        directionsRenderer.setDirections(result);
+
+        const leg = result.routes[0].legs[0];
+        if (timeEl) {
+          timeEl.textContent = `${leg.duration.text} drive · ${leg.distance.text}`;
+        }
+
+        revealMap(element);
+      },
+    );
   });
 }
 

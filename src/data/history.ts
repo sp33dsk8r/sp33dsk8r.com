@@ -1,4 +1,4 @@
-import { googleMapsEmbedUrl, googleMapsUrl } from './places';
+import { googleMapsEmbedUrl, googleMapsUrl, googleMapsDirectionsEmbedUrl, googleMapsDirectionsUrl } from './places';
 
 export type HistoryStop = {
   id: string;
@@ -8,12 +8,15 @@ export type HistoryStop = {
   notes?: string;
   address?: string;
   hideAddress?: boolean;
+  mapType?: 'location' | 'directions';
+  directionsFrom?: string;
+  directionsTo?: string;
   lat?: number;
   lng?: number;
   zoom?: number;
 };
 
-export { googleMapsEmbedUrl, googleMapsUrl };
+export { googleMapsEmbedUrl, googleMapsUrl, googleMapsDirectionsEmbedUrl, googleMapsDirectionsUrl };
 
 export const historyStops: HistoryStop[] = [
   {
@@ -94,6 +97,16 @@ export const historyStops: HistoryStop[] = [
     lat: 32.4282,
     lng: -90.1323,
     zoom: 12,
+  },
+  {
+    id: 'texas-1996-houston',
+    period: 'Aug 1996',
+    city: 'Houston',
+    location: 'Texas',
+    notes: 'Based in 77084. Working 7/7 out of Grand Isle, LA.',
+    mapType: 'directions',
+    directionsFrom: 'Houston, TX 77084',
+    directionsTo: 'Grand Isle, LA',
   },
   {
     id: 'texas-1996-present',
