@@ -42,6 +42,17 @@ export const vacationSpots: VacationSpot[] = [
     lng: -97.0789,
   },
   {
+    id: 'seaworld-aquatica-san-antonio-2024',
+    name: 'SeaWorld / Aquatica',
+    location: 'San Antonio, TX',
+    when: 'Jul 2024',
+    description:
+      'Water park, sea animal exhibits, and amusement park-style rides.',
+    highlights: ['Water park', 'Sea animals', 'Amusement park rides'],
+    lat: 29.4564,
+    lng: -98.6997,
+  },
+  {
     id: 'jamaica-beach-galveston-2023',
     name: 'Jamaica Beach / Galveston',
     location: 'Galveston, TX',
