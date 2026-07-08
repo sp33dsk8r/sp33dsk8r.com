@@ -109,6 +109,17 @@ export const historyStops: HistoryStop[] = [
     directionsTo: 'Grand Isle, LA',
   },
   {
+    id: 'texas-1999-copperfield',
+    period: '1999–2002',
+    city: 'Copperfield',
+    location: 'Texas',
+    notes: 'Copperfield apartments near Hwy 6 & FM 529 (77094).',
+    address: 'Hwy 6 & FM 529, Houston, TX 77094',
+    lat: 29.879212,
+    lng: -95.645315,
+    zoom: 15,
+  },
+  {
     id: 'texas-1996-present',
     period: '2021–present',
     city: 'Katy',
