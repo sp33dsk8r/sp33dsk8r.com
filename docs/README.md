@@ -25,6 +25,7 @@ import { Content } from '../../docs/your-page.md';
 ## Current files
 
 - `about.md` — About page
+- `history.md` — History page intro (timeline rows live in `src/data/history.ts`)
 - `MS150_2026_Journey.md` — Community & Events page
 - `gear.md` — Gear & Equipment page
 - `places.md` — Places to Skate & Ride page
