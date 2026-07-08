@@ -60,8 +60,11 @@ export const historyStops: HistoryStop[] = [
     period: 'Aug 1994',
     city: 'Magee',
     location: 'Mississippi',
-    lat: 31.8738,
-    lng: -89.7337,
+    address: '216 Walter Jones Road, Magee, MS 39111',
+    hideAddress: true,
+    lat: 31.831112,
+    lng: -89.713812,
+    zoom: 18,
   },
   {
     id: 'mississippi-1995-jackson',
