@@ -24,7 +24,7 @@ export const historyStops: HistoryStop[] = [
     address: '3282 Hwy 29 N, Soso, MS 39480',
     lat: 31.748094,
     lng: -89.27475,
-    zoom: 17,
+    zoom: 18,
   },
   {
     id: 'michigan-1989-1992',

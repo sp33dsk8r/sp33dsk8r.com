@@ -7,6 +7,17 @@ declare global {
         Marker: new (options: Record<string, unknown>) => unknown;
         BicyclingLayer: new () => { setMap: (map: unknown) => void };
         MapTypeId: { HYBRID: string; SATELLITE: string };
+        Geocoder: new () => {
+          geocode: (
+            request: { address: string },
+            callback: (
+              results: Array<{
+                geometry: { location: { lat: () => number; lng: () => number } };
+              }> | null,
+              status: string,
+            ) => void,
+          ) => void;
+        };
       };
     };
   }
@@ -92,27 +103,47 @@ export async function initSatelliteMaps(apiKey: string): Promise<void> {
     const lat = Number(element.dataset.lat);
     const lng = Number(element.dataset.lng);
     const zoom = Number(element.dataset.zoom ?? 14);
+    const address = element.dataset.address?.trim();
+
+    const renderMap = (center: { lat: number; lng: number }) => {
+      const map = new window.google!.maps.Map(element, {
+        center,
+        zoom,
+        mapTypeId: window.google!.maps.MapTypeId.SATELLITE,
+        disableDefaultUI: true,
+        zoomControl: true,
+        fullscreenControl: true,
+        gestureHandling: 'cooperative',
+      });
+
+      new window.google!.maps.Marker({
+        position: center,
+        map,
+      });
+
+      revealMap(element);
+    };
+
+    if (address) {
+      new window.google!.maps.Geocoder().geocode({ address }, (results, status) => {
+        if (status === 'OK' && results?.[0]) {
+          const location = results[0].geometry.location;
+          renderMap({ lat: location.lat(), lng: location.lng() });
+          return;
+        }
+
+        if (!Number.isNaN(lat) && !Number.isNaN(lng)) {
+          renderMap({ lat, lng });
+        }
+      });
+      return;
+    }
 
     if (Number.isNaN(lat) || Number.isNaN(lng)) {
       return;
     }
 
-    const map = new window.google.maps.Map(element, {
-      center: { lat, lng },
-      zoom,
-      mapTypeId: window.google.maps.MapTypeId.SATELLITE,
-      disableDefaultUI: true,
-      zoomControl: true,
-      fullscreenControl: true,
-      gestureHandling: 'cooperative',
-    });
-
-    new window.google.maps.Marker({
-      position: { lat, lng },
-      map,
-    });
-
-    revealMap(element);
+    renderMap({ lat, lng });
   });
 }
 

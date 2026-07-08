@@ -64,8 +64,14 @@ function mapAddress(stop: (typeof historyStops)[number]): string {
                 lng={stop.lng!}
                 zoom={stop.zoom}
                 variant="satellite"
-                embedUrl={googleMapsEmbedUrl(stop.lat!, stop.lng!, stop.zoom ?? 12, 'satellite')}
-                mapsUrl={googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12)}
+                embedUrl={googleMapsEmbedUrl(
+                  stop.lat!,
+                  stop.lng!,
+                  stop.zoom ?? 12,
+                  'satellite',
+                  stop.address,
+                )}
+                mapsUrl={googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12, stop.address)}
               />
               {stop.notes ? (
                 <p class="mt-6 text-lg leading-relaxed text-gray-200">{stop.notes}</p>
