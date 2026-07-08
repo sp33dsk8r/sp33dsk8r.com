@@ -18,5 +18,38 @@ export function googleMapsUrl(lat: number, lng: number, zoom = 12): string {
   return `https://www.google.com/maps/@${lat},${lng},${zoom}z`;
 }
 
-/** Add entries here as you fill in vacation spots. */
-export const vacationSpots: VacationSpot[] = [];
+export const vacationSpots: VacationSpot[] = [
+  {
+    id: 'great-wolf-grapevine-2026',
+    name: 'Great Wolf Resort',
+    location: 'Grapevine, TX',
+    when: 'Jul 2026',
+    description:
+      'Great for toddlers and young ones. Lots of things to do for the family.',
+    highlights: ['Indoor/Outdoor water park'],
+    lat: 32.9346,
+    lng: -97.0789,
+  },
+  {
+    id: 'great-wolf-grapevine-2023',
+    name: 'Great Wolf Resort',
+    location: 'Grapevine, TX',
+    when: 'Dec 2023',
+    description:
+      'Great for toddlers and young ones. Took the 10 yo this time. Lots of things to do for the family.',
+    highlights: ['Indoor water park'],
+    lat: 32.9346,
+    lng: -97.0789,
+  },
+  {
+    id: 'jamaica-beach-galveston-2023',
+    name: 'Jamaica Beach / Galveston',
+    location: 'Galveston, TX',
+    when: 'Jul 2023',
+    description:
+      'Went with family at a B&amp;B. Good time — kids need to be a little older.',
+    highlights: ['Beach', 'Parade', 'Grilling / BBQ'],
+    lat: 29.1897,
+    lng: -94.9799,
+  },
+];
