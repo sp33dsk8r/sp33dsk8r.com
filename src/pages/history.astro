@@ -63,7 +63,8 @@ function mapAddress(stop: (typeof historyStops)[number]): string {
                 lat={stop.lat!}
                 lng={stop.lng!}
                 zoom={stop.zoom}
-                embedUrl={googleMapsEmbedUrl(stop.lat!, stop.lng!, stop.zoom ?? 12)}
+                variant="satellite"
+                embedUrl={googleMapsEmbedUrl(stop.lat!, stop.lng!, stop.zoom ?? 12, 'satellite')}
                 mapsUrl={googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12)}
               />
               {stop.notes ? (
@@ -77,8 +78,8 @@ function mapAddress(stop: (typeof historyStops)[number]): string {
   </main>
   {mapsApiKey && mappedStops.length > 0 ? (
     <script define:vars={{ mapsApiKey }}>
-      import { initBikingMaps } from '../lib/bikingMaps';
-      initBikingMaps(mapsApiKey);
+      import { initSatelliteMaps } from '../lib/bikingMaps';
+      initSatelliteMaps(mapsApiKey);
     </script>
   ) : null}
 </Layout>

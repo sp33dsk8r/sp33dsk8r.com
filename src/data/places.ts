@@ -8,8 +8,15 @@ export type Park = {
   description: string;
 };
 
-export function googleMapsEmbedUrl(lat: number, lng: number, zoom = 14): string {
-  return `https://www.google.com/maps?q=${lat},${lng}&hl=en&z=${zoom}&output=embed`;
+export function googleMapsEmbedUrl(
+  lat: number,
+  lng: number,
+  zoom = 14,
+  mapType: 'roadmap' | 'satellite' | 'hybrid' = 'roadmap',
+): string {
+  const typeParam =
+    mapType === 'satellite' ? '&t=k' : mapType === 'hybrid' ? '&t=h' : '';
+  return `https://www.google.com/maps?q=${lat},${lng}&hl=en&z=${zoom}${typeParam}&output=embed`;
 }
 
 export function googleMapsUrl(lat: number, lng: number, zoom = 14): string {

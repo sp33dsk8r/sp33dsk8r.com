@@ -6,7 +6,7 @@ declare global {
         Map: new (element: HTMLElement, options: Record<string, unknown>) => unknown;
         Marker: new (options: Record<string, unknown>) => unknown;
         BicyclingLayer: new () => { setMap: (map: unknown) => void };
-        MapTypeId: { HYBRID: string };
+        MapTypeId: { HYBRID: string; SATELLITE: string };
       };
     };
   }
@@ -72,11 +72,55 @@ export async function initBikingMaps(apiKey: string): Promise<void> {
       map,
     });
 
-    const fallback = element.parentElement?.querySelector<HTMLElement>('[data-map-fallback]');
-    if (fallback) {
-      fallback.hidden = true;
+    revealMap(element);
+  });
+}
+
+export async function initSatelliteMaps(apiKey: string): Promise<void> {
+  const containers = document.querySelectorAll<HTMLElement>('[data-satellite-map]');
+  if (!containers.length || !apiKey) {
+    return;
+  }
+
+  await loadGoogleMaps(apiKey);
+
+  if (!window.google?.maps) {
+    return;
+  }
+
+  containers.forEach((element) => {
+    const lat = Number(element.dataset.lat);
+    const lng = Number(element.dataset.lng);
+    const zoom = Number(element.dataset.zoom ?? 14);
+
+    if (Number.isNaN(lat) || Number.isNaN(lng)) {
+      return;
     }
 
-    element.hidden = false;
+    const map = new window.google.maps.Map(element, {
+      center: { lat, lng },
+      zoom,
+      mapTypeId: window.google.maps.MapTypeId.SATELLITE,
+      disableDefaultUI: true,
+      zoomControl: true,
+      fullscreenControl: true,
+      gestureHandling: 'cooperative',
+    });
+
+    new window.google.maps.Marker({
+      position: { lat, lng },
+      map,
+    });
+
+    revealMap(element);
   });
+}
+
+function revealMap(element: HTMLElement): void {
+  const fallback = element.parentElement?.querySelector<HTMLElement>('[data-map-fallback]');
+  if (fallback) {
+    fallback.hidden = true;
+  }
+
+  element.hidden = false;
 }
