@@ -1,4 +1,6 @@
 ---
+import { googleMapsStaticSatelliteUrl } from '../data/places';
+
 interface Props {
   title: string;
   lat: number;
@@ -27,11 +29,24 @@ const {
 const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
 const useEnhancedMaps = Boolean(apiKey);
 const isSatellite = variant === 'satellite';
+const hideLabels = Boolean(mapId);
+const privacySatelliteUrl =
+  hideLabels && isSatellite && apiKey
+    ? googleMapsStaticSatelliteUrl(lat, lng, zoom, apiKey)
+    : undefined;
+const usePrivacySatellite = Boolean(privacySatelliteUrl);
 ---
 
 <figure class="border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
   <div class="aspect-video w-full relative bg-gray-900">
-    {useEnhancedMaps ? (
+    {usePrivacySatellite ? (
+      <img
+        src={privacySatelliteUrl}
+        alt={`Satellite map for ${title}`}
+        loading="lazy"
+        class="h-full w-full object-cover"
+      />
+    ) : useEnhancedMaps ? (
       <>
         {isSatellite ? (
           <div
@@ -40,6 +55,7 @@ const isSatellite = variant === 'satellite';
             data-lng={lng}
             data-zoom={zoom}
             data-map-id={mapId}
+            data-hide-labels={hideLabels ? 'true' : undefined}
             data-address={geocodeAddress}
             class="h-full w-full"
             hidden

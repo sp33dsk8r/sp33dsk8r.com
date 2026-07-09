@@ -64,6 +64,15 @@ function loadGoogleMaps(apiKey: string): Promise<void> {
   return window.__bikingMapsLoader;
 }
 
+const HIDE_LABEL_STYLES = [
+  { featureType: 'all', elementType: 'labels.text', stylers: [{ visibility: 'off' }] },
+  { featureType: 'all', elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
+];
+
+function shouldHideLabels(element: HTMLElement): boolean {
+  return element.dataset.hideLabels === 'true';
+}
+
 export async function initBikingMaps(apiKey: string): Promise<void> {
   const containers = document.querySelectorAll<HTMLElement>('[data-biking-map]');
   if (!containers.length || !apiKey) {
@@ -121,6 +130,10 @@ export async function initSatelliteMaps(
   }
 
   containers.forEach((element) => {
+    if (shouldHideLabels(element)) {
+      return;
+    }
+
     const lat = Number(element.dataset.lat);
     const lng = Number(element.dataset.lng);
     const zoom = Number(element.dataset.zoom ?? 14);
@@ -137,6 +150,8 @@ export async function initSatelliteMaps(
         zoomControl: true,
         fullscreenControl: true,
         gestureHandling: 'cooperative',
+        clickableIcons: false,
+        ...(shouldHideLabels(element) ? { styles: HIDE_LABEL_STYLES } : {}),
       });
 
       new window.google!.maps.Marker({

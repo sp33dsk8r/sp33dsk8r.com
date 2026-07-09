@@ -31,6 +31,18 @@ import { Content } from '../../docs/your-page.md';
 - `places.md` — Places to Skate & Ride page
 - `places-questionnaire.md` — Optional questionnaire for expanding places content (also copied to `public/` for download)
 
-## Places page maps
+## Maps
 
-Satellite + biking trail maps on `/places` use the Google Maps JavaScript API. Set `PUBLIC_GOOGLE_MAPS_API_KEY` in `.env` for local dev (see `.env.example`). For GitHub Pages, add the same value as a repository secret so the deploy workflow can bake it in at build time.
+Set `PUBLIC_GOOGLE_MAPS_API_KEY` in `.env` for local dev (see `.env.example`). For GitHub Pages, add the same value as a repository secret so the deploy workflow can bake it in at build time.
+
+### Places page (`/places`)
+
+Satellite + biking trail maps use the Google Maps JavaScript API via `MapSnapshot.astro` and `src/lib/bikingMaps.ts`.
+
+### History page (`/history`)
+
+Timeline rows live in `src/data/history.ts`; stops with `lat`/`lng` render satellite maps below the table via `MapSnapshot.astro`.
+
+**Privacy stops** — set `hideAddress: true` on a stop to omit the street address from the caption and embed URL. The map still centers on manual pin coordinates (`lat`, `lng`, `zoom`). When the API key is present, these stops use a static satellite image with labels suppressed (no interactive JS map swap). Without a key, the embed falls back to a coordinate-based Google Maps iframe.
+
+Coordinate-only embeds and “Open in Google Maps” links use `googleMapsEmbedUrl` / `googleMapsUrl` from `src/data/places.ts` (no address in the query string when `hideAddress` is set).

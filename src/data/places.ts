@@ -8,6 +8,22 @@ export type Park = {
   description: string;
 };
 
+export function googleMapsStaticSatelliteUrl(
+  lat: number,
+  lng: number,
+  zoom: number,
+  apiKey: string,
+  width = 640,
+  height = 360,
+): string {
+  const marker = `color:red%7C${lat},${lng}`;
+  const labelStyles = [
+    'style=feature:all|element:labels.text|visibility:off',
+    'style=feature:all|element:labels.icon|visibility:off',
+  ].join('&');
+  return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${zoom}&size=${width}x${height}&scale=2&maptype=satellite&markers=${marker}&${labelStyles}&key=${encodeURIComponent(apiKey)}`;
+}
+
 export function googleMapsEmbedUrl(
   lat: number,
   lng: number,
