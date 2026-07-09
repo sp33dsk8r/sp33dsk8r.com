@@ -43,9 +43,11 @@ Satellite + biking trail maps use the Google Maps JavaScript API via `MapSnapsho
 
 Timeline rows live in `src/data/history.ts`; stops with `lat`/`lng` render satellite maps below the table via `MapSnapshot.astro`.
 
-**Privacy stops** — set `hideAddress: true` on a stop to omit the street address from the caption and embed URL. The caption shows only city and state (e.g. “Petal, Mississippi”); the map centers on manual pin coordinates (`lat`, `lng`, `zoom`). An `address` may remain in data for reference without appearing publicly — e.g. Petal at `417 Old Corinth Road` with `hideAddress: true`.
+**Privacy stops** — set `hideAddress: true` on a stop to omit the street address from the caption and embed URL. The caption shows only city and state (e.g. “Ridgeland, Mississippi”); the map centers on manual pin coordinates (`lat`, `lng`, `zoom`). An `address` may remain in data for reference without appearing publicly — e.g. Petal at `417 Old Corinth Road` or Ridgeland at `5764 Imperial Drive, Jackson, MS 39211` with `hideAddress: true`.
 
-Current privacy stops: Williamsburg MI, Magee MS, Petal MS, Houston TX (77084 area, coordinate pin only), and Katy TX (`29.82279669984268, -95.80327358631828`, coordinate pin only). Copperfield (Westmount at Copper Mill) is not a privacy stop — its complex name is shown in the caption.
+The separate Jackson (1995) stop was removed; 1995 is represented by the Petal stop only. Ridgeland (1996) uses a satellite pin at `32.375864, -90.121458` (geocoded from the hidden Imperial Drive address) with updated New Orleans Cafe notes.
+
+Current privacy stops: Williamsburg MI, Magee MS, Petal MS, Ridgeland MS (`5764 Imperial Drive`, Jackson MS 39211 geocode), Houston TX (77084 area, coordinate pin only), and Katy TX (`29.82279669984268, -95.80327358631828`, coordinate pin only). Copperfield (Westmount at Copper Mill) is not a privacy stop — its complex name is shown in the caption.
 
 When the API key is present, privacy stops use a static satellite image with labels suppressed (no interactive JS map swap). Without a key, the embed falls back to a coordinate-based Google Maps iframe.
 
