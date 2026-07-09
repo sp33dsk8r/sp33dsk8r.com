@@ -47,7 +47,7 @@ Timeline rows live in `src/data/history.ts`; stops with `lat`/`lng` render satel
 
 The separate Jackson (1995) stop was removed; 1995 is represented by the Petal stop only. Ridgeland (1996) uses a satellite pin at `32.375864, -90.121458` (geocoded from the hidden Imperial Drive address) with updated New Orleans Cafe notes.
 
-**Timeline notes** — Copperfield is `1999–2003` (Westmount at Copper Mill). After the first Houston stint (`Aug 1996–Dec 1998`, 77084 area pin), Texas stops continue: Houston `2004–2005`, Tomball `2005–2007` (Spring Creek / 316 Cherry St), Tomball `2008–2009` (920 Lawrence St), Houston `2010–2020`, then Katy `2021–present`.
+**Timeline notes** — Copperfield is `1999–2003` (Westmount at Copper Mill). After the first Houston stint (`Aug 1996–Dec 1998`, 77084 area pin), Texas stops continue: Houston `2004–2005`, Tomball `2005–2007` (Spring Creek / 316 Cherry St), Tomball `2008–2009` (920 Lawrence St — Retooling), Houston `2010–2020` (Energy corridor west), then Katy `2021–present`.
 
 Current privacy stops: Williamsburg MI, Hattiesburg MS (`318 38th Street` geocode), Magee MS, Petal MS, Ridgeland MS (`5764 Imperial Drive`, Jackson MS 39211 geocode), Houston TX (77084 area pin — three separate periods: `Aug 1996–Dec 1998`, `2004–2005`, `2010–2020`), Tomball TX (`316 Cherry St` and `920 Lawrence St` geocodes), and Katy TX (`29.82279669984268, -95.80327358631828`, coordinate pin only). Copperfield (Westmount at Copper Mill) is not a privacy stop — its complex name is shown in the caption.
 
