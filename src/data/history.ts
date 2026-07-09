@@ -85,8 +85,11 @@ export const historyStops: HistoryStop[] = [
     city: 'Petal',
     location: 'Mississippi',
     notes: 'Hattiesburg area',
-    lat: 31.3466,
-    lng: -89.2601,
+    address: '417 Old Corinth Road, Petal, MS 39465',
+    hideAddress: true,
+    lat: 31.350266,
+    lng: -89.24359,
+    zoom: 18,
   },
   {
     id: 'mississippi-1996-ridgeland',
