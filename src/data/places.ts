@@ -17,8 +17,10 @@ export function googleMapsEmbedUrl(
 ): string {
   const typeParam =
     mapType === 'satellite' ? '&t=k' : mapType === 'hybrid' ? '&t=h' : '';
-  const q = query ? encodeURIComponent(query) : `${lat},${lng}`;
-  return `https://www.google.com/maps?q=${q}&hl=en&z=${zoom}${typeParam}&output=embed`;
+  if (query) {
+    return `https://www.google.com/maps?q=${encodeURIComponent(query)}&hl=en&z=${zoom}${typeParam}&output=embed`;
+  }
+  return `https://maps.google.com/maps?q=loc:${lat},${lng}&ll=${lat},${lng}&z=${zoom}${typeParam}&output=embed`;
 }
 
 export function googleMapsUrl(lat: number, lng: number, zoom = 14, query?: string): string {

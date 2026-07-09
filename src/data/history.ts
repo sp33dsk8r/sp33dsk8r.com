@@ -104,9 +104,10 @@ export const historyStops: HistoryStop[] = [
     city: 'Houston',
     location: 'Texas',
     notes: 'Based in 77084. Working 7/7 out of Grand Isle, LA.',
-    mapType: 'directions',
-    directionsFrom: 'Houston, TX 77084',
-    directionsTo: 'Grand Isle, LA',
+    hideAddress: true,
+    lat: 29.8186944,
+    lng: -95.6978611,
+    zoom: 18,
   },
   {
     id: 'texas-1999-copperfield',
