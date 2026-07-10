@@ -35,7 +35,7 @@ export const historyStops: HistoryStop[] = [
     period: '1989—1992',
     city: 'Williamsburg',
     state: 'Michigan',
-    notes: "It's outside of Traverse City/Acme.  Did a variety of jobs… MC'd Karaoke shows, cleaned carpet, drove all over Lower Northwest Michigan.  Saw some really cool places. Mackinaw Island is a trip.",
+    notes: "It's outside of Traverse City/Acme.  Did a variety of jobs… cleaned carpet, MC'd Karaoke at bars, was a lease operator in the oilfield, drove all over the Northern LP.  Saw some cool places.  Mackinaw island is a trip.",
     address: '4382 Westridge Drive, Williamsburg, MI 49684',
     hideAddress: true,
     lat: 44.749995,
