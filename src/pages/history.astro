@@ -32,15 +32,15 @@ const privateGeocodeById = Object.fromEntries(
 );
 
 function mapTitle(stop: (typeof historyStops)[number]): string {
-  return [stop.city, stop.location].filter(Boolean).join(', ');
+  return [stop.city, stop.state].filter(Boolean).join(', ');
 }
 
 function mapDisplayAddress(stop: (typeof historyStops)[number]): string {
   if (stop.hideAddress) {
-    return [stop.city, stop.location].filter(Boolean).join(', ');
+    return [stop.city, stop.state].filter(Boolean).join(', ');
   }
 
-  return stop.address ?? [stop.city, stop.location].filter(Boolean).join(', ');
+  return stop.address ?? [stop.city, stop.state].filter(Boolean).join(', ');
 }
 
 function mapEmbedQuery(stop: (typeof historyStops)[number]): string | undefined {
@@ -70,7 +70,7 @@ function routeLabel(stop: (typeof historyStops)[number]): string {
             <tr>
               <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[18%]">Period</th>
               <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[18%]">City</th>
-              <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[18%]">Location</th>
+              <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[18%]">State</th>
               <th class="px-4 py-3 text-left font-semibold text-speedYellow w-[46%]">Notes</th>
             </tr>
           </thead>
@@ -79,7 +79,7 @@ function routeLabel(stop: (typeof historyStops)[number]): string {
               <tr class="border-t border-gray-700 hover:bg-white/5">
                 <td class="px-4 py-3 align-top">{stop.period}</td>
                 <td class="px-4 py-3 align-top text-gray-300">{stop.city ?? '—'}</td>
-                <td class="px-4 py-3 align-top">{stop.location}</td>
+                <td class="px-4 py-3 align-top">{stop.state}</td>
                 <td class="px-4 py-3 align-top text-gray-300">{stop.notes ?? '—'}</td>
               </tr>
             ))}
