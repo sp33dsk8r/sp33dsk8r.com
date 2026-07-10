@@ -32,7 +32,7 @@ export const historyStops: HistoryStop[] = [
   },
   {
     id: 'michigan-1989-1992',
-    period: '1983—1992',
+    period: '1989—1992',
     city: 'Williamsburg',
     state: 'Michigan',
     notes: "It's outside of Traverse City/Acme.  Did a variety of jobs… MC'd Karaoke shows, cleaned carpet, drove all over Lower Northwest Michigan.  Saw some really cool places. Mackinaw Island is a trip.",
