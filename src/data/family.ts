@@ -8,8 +8,7 @@ export type FamilyPhoto = {
 export const familyPhotos: FamilyPhoto[] = [
   {
     src: 'dad.jpeg',
-    alt: 'Dad enjoying a home-cooked meal at the dining table',
+    alt: 'Dad at home in a plaid shirt',
     caption: 'Dad',
-    rotate: 'cw',
   },
 ];
