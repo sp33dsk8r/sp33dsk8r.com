@@ -30,6 +30,7 @@ import { Content } from '../../docs/your-page.md';
 - `gear.md` — Gear & Equipment page
 - `places.md` — Places to Skate & Ride page
 - `places-questionnaire.md` — Optional questionnaire for expanding places content (also copied to `public/` for download)
+- `family.astro` — Family page (photo entries in `src/data/family.ts`, images in `public/`)
 
 ## Maps
 
