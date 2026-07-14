@@ -71,8 +71,8 @@ export const historyStops: HistoryStop[] = [
     notes: 'Missed the warm weather, moved back. Worked in Jackson, first office job.',
     address: '216 Walter Jones Road, Magee, MS 39111',
     hideAddress: true,
-    lat: 31.831112,
-    lng: -89.713812,
+    lat: 31.896470237186648,
+    lng: -89.74004640250628,
     zoom: 18,
   },
   {
