@@ -34,7 +34,7 @@ For GitHub Pages, add the same value as a repository secret named `PUBLIC_GOOGLE
 | Life timeline | `src/data/history.ts` |
 | Vacations | `src/data/vacations.ts` |
 | Family photos | `src/data/family.ts` + images in `public/` |
-| Site name / X | `src/config/site.ts` |
+| Site name / X / email | `src/config/site.ts` |
 
 Authoring notes (privacy stops, maps, questionnaires): see [`docs/README.md`](docs/README.md).
 

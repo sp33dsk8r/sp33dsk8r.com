@@ -40,4 +40,4 @@ The fs26 is a Scorpion by HP Velotechnik — a full-suspension recumbent that ri
 
 ---
 
-Have questions about gear choices for Houston skating or endurance riding? Reach out through the community — always happy to share what I've learned.
+Have questions about gear choices for Houston skating or endurance riding? Email [bryan@sp33dsk8r.com](mailto:bryan@sp33dsk8r.com) — always happy to share what I've learned.
