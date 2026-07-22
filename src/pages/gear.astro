@@ -5,26 +5,38 @@ import { Content } from '../../docs/gear.md';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const skatePhoto = {
-  src: `${base}edgetek.jpeg`,
+  webp: `${base}edgetek.webp`,
+  jpeg: `${base}edgetek.jpeg`,
   alt: 'EdgeTek carbon fiber inline skates',
   caption: 'EdgeTek carbon fiber skates',
+  width: 900,
+  height: 1200,
 };
 
 const bikePhotos = [
   {
-    src: `${base}v20.jpeg`,
+    webp: `${base}v20.webp`,
+    jpeg: `${base}v20.jpeg`,
     alt: 'Yellow Cruzbike Vendetta V20 recumbent',
     caption: 'Cruzbike Vendetta V20',
+    width: 1200,
+    height: 929,
   },
   {
-    src: `${base}fs26.jpeg`,
+    webp: `${base}fs26.webp`,
+    jpeg: `${base}fs26.jpeg`,
     alt: 'HP Velotechnik Scorpion fs26 recumbent',
     caption: 'HP Velotechnik Scorpion fs26',
+    width: 1200,
+    height: 900,
   },
 ];
 ---
 
-<Layout title="Gear &amp; Equipment - sp33dsk8r">
+<Layout
+  title="Gear &amp; Equipment - sp33dsk8r"
+  description="Skates, recumbents, and training setups Bryan uses for Houston skating and endurance riding."
+>
   <main class="bg-speedBlack text-white py-16">
     <div class="max-w-4xl mx-auto px-6">
       <h1 class="text-5xl font-bold mb-12">Gear &amp; Equipment</h1>
@@ -32,12 +44,18 @@ const bikePhotos = [
       <div class="flex flex-col gap-6 mb-12">
         <figure class="mx-auto w-full max-w-xs border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
           <div class="h-56 flex items-center justify-center overflow-hidden">
-            <img
-              src={skatePhoto.src}
-              alt={skatePhoto.alt}
-              class="-rotate-90 object-contain max-h-52 w-auto"
-              loading="lazy"
-            />
+            <picture>
+              <source srcset={skatePhoto.webp} type="image/webp" />
+              <img
+                src={skatePhoto.jpeg}
+                alt={skatePhoto.alt}
+                width={skatePhoto.width}
+                height={skatePhoto.height}
+                class="object-contain max-h-52 w-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <figcaption class="px-4 py-3 text-center text-sm text-gray-300">
             {skatePhoto.caption}
@@ -48,12 +66,18 @@ const bikePhotos = [
           {bikePhotos.map((photo) => (
             <figure class="border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
               <div class="h-56 flex items-center justify-center overflow-hidden">
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  class="w-full h-56 object-cover"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcset={photo.webp} type="image/webp" />
+                  <img
+                    src={photo.jpeg}
+                    alt={photo.alt}
+                    width={photo.width}
+                    height={photo.height}
+                    class="w-full h-56 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
               <figcaption class="px-4 py-3 text-center text-sm text-gray-300">
                 {photo.caption}

@@ -3,8 +3,39 @@ import '../styles/global.css';
 import SocialLinks from '../components/SocialLinks.astro';
 import { site } from '../config/site';
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Houston speedskating community • Fitness & recreational skating with sp33dsk8r',
+} = Astro.props;
+
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const basePrefix = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+let currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+if (basePrefix && currentPath.startsWith(basePrefix)) {
+  currentPath = currentPath.slice(basePrefix.length) || '/';
+}
+
+const navLinks = [
+  { href: base, label: 'Home', match: '/' },
+  { href: `${base}gear`, label: 'Gear', match: '/gear' },
+  { href: `${base}places`, label: 'Places', match: '/places' },
+  { href: `${base}about`, label: 'About', match: '/about' },
+  { href: `${base}history`, label: 'History', match: '/history' },
+  { href: `${base}community`, label: 'Community', match: '/community' },
+  { href: `${base}vacations`, label: 'Vacations', match: '/vacations' },
+  { href: `${base}family`, label: 'Family', match: '/family' },
+];
+
+function isActive(match: string): boolean {
+  return currentPath === match;
+}
 ---
 
 <!doctype html>
@@ -13,36 +44,107 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
-  <meta name="description" content="Houston speedskating community • Fitness & recreational skating with sp33dsk8r" />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content={site.xHandle} />
   <meta name="twitter:creator" content={site.xHandle} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
 </head>
 <body class="bg-speedBlack text-white font-sans leading-relaxed">
-  <nav class="border-b border-gray-700 bg-speedBlack/95 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-      <a href={base} class="text-3xl font-bold tracking-tighter">
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-speedYellow focus:px-4 focus:py-2 focus:text-black focus:outline-none"
+  >
+    Skip to content
+  </a>
+
+  <nav class="border-b border-gray-700 bg-speedBlack/95 backdrop-blur-md sticky top-0 z-50" aria-label="Primary">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center gap-4">
+      <a href={base} class="text-3xl font-bold tracking-tighter shrink-0">
         <span class="text-speedYellow">sp33d</span><span class="text-white">sk8r</span>
       </a>
-      <div class="flex gap-8 text-lg font-medium">
-        <a href={base} class="hover:text-speedYellow transition">Home</a>
-        <a href={`${base}gear`} class="hover:text-speedYellow transition">Gear</a>
-        <a href={`${base}places`} class="hover:text-speedYellow transition">Places</a>
-        <a href={`${base}about`} class="hover:text-speedYellow transition">About</a>
-        <a href={`${base}history`} class="hover:text-speedYellow transition">History</a>
-        <a href={`${base}community`} class="hover:text-speedYellow transition">Community</a>
-        <a href={`${base}vacations`} class="hover:text-speedYellow transition">Vacations</a>
-        <a href={`${base}family`} class="hover:text-speedYellow transition">Family</a>
+
+      <div class="hidden md:flex flex-wrap justify-end gap-x-6 gap-y-2 text-lg font-medium">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'hover:text-speedYellow transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-speedYellow',
+              isActive(link.match) && 'text-speedYellow',
+            ]}
+            aria-current={isActive(link.match) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        class="md:hidden inline-flex items-center justify-center rounded-lg border border-gray-600 px-3 py-2 text-sm font-medium hover:border-speedYellow hover:text-speedYellow transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-speedYellow"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        data-nav-toggle
+      >
+        <span class="sr-only">Open menu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-nav" class="md:hidden border-t border-gray-700 px-6 py-4" hidden>
+      <div class="flex flex-col gap-3 text-lg font-medium">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'py-1 hover:text-speedYellow transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-speedYellow',
+              isActive(link.match) && 'text-speedYellow',
+            ]}
+            aria-current={isActive(link.match) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
     </div>
   </nav>
 
-  <slot />
+  <div id="main-content">
+    <slot />
+  </div>
 
   <footer class="border-t border-gray-700 py-12 mt-20 bg-speedBlack">
     <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-4 text-center text-gray-400">
       <SocialLinks class="text-base" />
-      <p>© 2026 sp33dsk8r.com • Built with ❤️ for the Houston skating community</p>
+      <p>© 2026 sp33dsk8r.com • Built for the Houston skating community</p>
     </div>
   </footer>
+
+  <script>
+    const toggle = document.querySelector('[data-nav-toggle]');
+    const panel = document.getElementById('mobile-nav');
+    if (toggle instanceof HTMLButtonElement && panel) {
+      const label = toggle.querySelector('.sr-only');
+      toggle.addEventListener('click', () => {
+        const open = panel.hasAttribute('hidden');
+        if (open) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', '');
+        }
+        toggle.setAttribute('aria-expanded', String(open));
+        if (label) label.textContent = open ? 'Close menu' : 'Open menu';
+      });
+    }
+  </script>
 </body>
 </html>
