@@ -9,26 +9,49 @@ interface Props {
 const { class: className = '', showLabel = true } = Astro.props;
 ---
 
-<a
-  href={site.x}
-  target="_blank"
-  rel="noopener noreferrer"
-  class:list={[
-    'inline-flex items-center gap-2 text-gray-300 hover:text-speedYellow transition',
-    className,
-  ]}
-  aria-label={`Follow ${site.xHandle} on X`}
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    class="h-5 w-5 shrink-0"
-    aria-hidden="true"
+<div class:list={['inline-flex flex-wrap items-center gap-x-5 gap-y-2', className]}>
+  <a
+    href={site.mailto}
+    class="inline-flex items-center gap-2 text-gray-300 hover:text-speedYellow transition"
+    aria-label={`Email ${site.email}`}
   >
-    <path
-      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-    />
-  </svg>
-  {showLabel && <span>{site.xHandle}</span>}
-</a>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.75"
+      class="h-5 w-5 shrink-0"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z"
+      />
+      <path stroke-linecap="round" stroke-linejoin="round" d="m4 8 8 5 8-5" />
+    </svg>
+    {showLabel && <span>{site.email}</span>}
+  </a>
+
+  <a
+    href={site.x}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center gap-2 text-gray-300 hover:text-speedYellow transition"
+    aria-label={`Follow ${site.xHandle} on X`}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="h-5 w-5 shrink-0"
+      aria-hidden="true"
+    >
+      <path
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+      />
+    </svg>
+    {showLabel && <span>{site.xHandle}</span>}
+  </a>
+</div>
