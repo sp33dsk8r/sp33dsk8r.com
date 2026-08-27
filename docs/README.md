@@ -42,7 +42,7 @@ Satellite + biking trail maps use the Google Maps JavaScript API via `MapSnapsho
 
 ### History page (`/history`)
 
-Timeline rows live in `src/data/history.ts` and render in a table with columns **Period**, **City**, **State**, and **Notes**. Stops with `lat`/`lng` also render satellite maps below the table via `MapSnapshot.astro`. Date ranges use em dashes (e.g. `1996—1999`).
+Timeline rows live in `src/data/history.ts` and render in a table with columns **Period**, **City**, **State**, and **Notes**. Stops with `lat`/`lng` also render maps below the table via `MapSnapshot.astro` (satellite by default). Set `mapVariant: 'streetview'` for Street View instead of aerial — e.g. Williamsburg `1989—1992` at 4382 Westridge Drive (address stays hidden in the caption). Optional `streetViewHeading` aims the camera. Date ranges use em dashes (e.g. `1996—1999`).
 
 **Privacy stops** — set `hideAddress: true` on a stop to omit the street address from the caption and embed URL. The caption shows only city and state (e.g. “Ridgeland, Mississippi”); the map centers on manual pin coordinates (`lat`, `lng`, `zoom`). An `address` may remain in data for reference without appearing publicly — e.g. Hattiesburg at `318 38th Street`, Petal at `417 Old Corinth Road`, or Ridgeland at `5764 Imperial Drive, Jackson, MS 39211` with `hideAddress: true`.
 

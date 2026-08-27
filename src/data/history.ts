@@ -1,4 +1,11 @@
-import { googleMapsEmbedUrl, googleMapsUrl, googleMapsDirectionsEmbedUrl, googleMapsDirectionsUrl } from './places';
+import {
+  googleMapsEmbedUrl,
+  googleMapsUrl,
+  googleMapsDirectionsEmbedUrl,
+  googleMapsDirectionsUrl,
+  googleMapsStreetViewEmbedUrl,
+  googleMapsStreetViewUrl,
+} from './places';
 
 export type HistoryStop = {
   id: string;
@@ -9,14 +16,23 @@ export type HistoryStop = {
   address?: string;
   hideAddress?: boolean;
   mapType?: 'location' | 'directions';
+  mapVariant?: 'satellite' | 'streetview';
   directionsFrom?: string;
   directionsTo?: string;
   lat?: number;
   lng?: number;
   zoom?: number;
+  streetViewHeading?: number;
 };
 
-export { googleMapsEmbedUrl, googleMapsUrl, googleMapsDirectionsEmbedUrl, googleMapsDirectionsUrl };
+export {
+  googleMapsEmbedUrl,
+  googleMapsUrl,
+  googleMapsDirectionsEmbedUrl,
+  googleMapsDirectionsUrl,
+  googleMapsStreetViewEmbedUrl,
+  googleMapsStreetViewUrl,
+};
 
 export const historyStops: HistoryStop[] = [
   {
@@ -38,6 +54,7 @@ export const historyStops: HistoryStop[] = [
     notes: "It's outside of Traverse City/Acme.  Did a variety of jobs… cleaned carpet, MC'd Karaoke at bars, was a lease operator in the oilfield, drove all over the Northern LP.  Saw some cool places.  Mackinaw island is a trip.",
     address: '4382 Westridge Drive, Williamsburg, MI 49684',
     hideAddress: true,
+    mapVariant: 'streetview',
     lat: 44.749995,
     lng: -85.484343,
     zoom: 18,
