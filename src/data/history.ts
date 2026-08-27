@@ -67,6 +67,7 @@ export const historyStops: HistoryStop[] = [
     notes: 'Moved back for 6 months',
     address: '318 38th Street, Hattiesburg, MS 39401',
     hideAddress: true,
+    mapVariant: 'streetview',
     lat: 31.329423,
     lng: -89.345627,
     zoom: 18,
