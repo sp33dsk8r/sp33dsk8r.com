@@ -46,6 +46,23 @@ export function googleMapsUrl(lat: number, lng: number, zoom = 14, query?: strin
   return `https://www.google.com/maps/@${lat},${lng},${zoom}z`;
 }
 
+export function googleMapsStreetViewEmbedUrl(
+  lat: number,
+  lng: number,
+  apiKey?: string,
+  heading = 0,
+): string {
+  if (apiKey) {
+    return `https://www.google.com/maps/embed/v1/streetview?key=${encodeURIComponent(apiKey)}&location=${lat},${lng}&heading=${heading}&pitch=0&fov=90`;
+  }
+
+  return `https://maps.google.com/maps?q=&layer=c&cbll=${lat},${lng}&cbp=12,${heading},0,0,0&hl=en&ie=UTF8&hq=&output=svembed`;
+}
+
+export function googleMapsStreetViewUrl(lat: number, lng: number, heading = 0): string {
+  return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}&heading=${heading}&pitch=0&fov=90`;
+}
+
 export function googleMapsDirectionsUrl(origin: string, destination: string): string {
   return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=driving`;
 }

@@ -7,6 +7,8 @@ import {
   googleMapsDirectionsEmbedUrl,
   googleMapsDirectionsUrl,
   googleMapsEmbedUrl,
+  googleMapsStreetViewEmbedUrl,
+  googleMapsStreetViewUrl,
   googleMapsUrl,
   historyStops,
 } from '../data/history';
@@ -27,7 +29,7 @@ const directionsStops = mappedStops.filter((stop) => stop.mapType === 'direction
 
 const privateGeocodeById = Object.fromEntries(
   locationStops
-    .filter((stop) => stop.hideAddress && stop.address)
+    .filter((stop) => stop.hideAddress && stop.address && stop.mapVariant !== 'streetview')
     .map((stop) => [stop.id, stop.address!]),
 );
 
@@ -116,20 +118,35 @@ function routeLabel(stop: (typeof historyStops)[number]): string {
                   lat={stop.lat!}
                   lng={stop.lng!}
                   zoom={stop.zoom}
-                  variant="satellite"
-                  mapId={stop.hideAddress ? stop.id : undefined}
+                  variant={stop.mapVariant === 'streetview' ? 'streetview' : 'satellite'}
+                  mapId={stop.hideAddress && stop.mapVariant !== 'streetview' ? stop.id : undefined}
                   geocodeAddress={stop.hideAddress ? undefined : stop.address}
-                  embedUrl={googleMapsEmbedUrl(
-                    stop.lat!,
-                    stop.lng!,
-                    stop.zoom ?? 12,
-                    'satellite',
-                    mapEmbedQuery(stop),
-                  )}
+                  embedUrl={
+                    stop.mapVariant === 'streetview'
+                      ? googleMapsStreetViewEmbedUrl(
+                          stop.lat!,
+                          stop.lng!,
+                          mapsApiKey || undefined,
+                          stop.streetViewHeading ?? 0,
+                        )
+                      : googleMapsEmbedUrl(
+                          stop.lat!,
+                          stop.lng!,
+                          stop.zoom ?? 12,
+                          'satellite',
+                          mapEmbedQuery(stop),
+                        )
+                  }
                   mapsUrl={
-                    stop.hideAddress
-                      ? googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12)
-                      : googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12, stop.address)
+                    stop.mapVariant === 'streetview'
+                      ? googleMapsStreetViewUrl(
+                          stop.lat!,
+                          stop.lng!,
+                          stop.streetViewHeading ?? 0,
+                        )
+                      : stop.hideAddress
+                        ? googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12)
+                        : googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12, stop.address)
                   }
                 />
               )}

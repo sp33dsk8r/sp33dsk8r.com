@@ -9,7 +9,7 @@ interface Props {
   mapsUrl: string;
   address: string;
   embedUrl: string;
-  variant?: 'biking' | 'satellite';
+  variant?: 'biking' | 'satellite' | 'streetview';
   mapId?: string;
   geocodeAddress?: string;
 }
@@ -29,6 +29,7 @@ const {
 const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY ?? '';
 const useEnhancedMaps = Boolean(apiKey);
 const isSatellite = variant === 'satellite';
+const isStreetView = variant === 'streetview';
 const hideLabels = Boolean(mapId);
 const privacySatelliteUrl =
   hideLabels && isSatellite && apiKey
@@ -39,7 +40,16 @@ const usePrivacySatellite = Boolean(privacySatelliteUrl);
 
 <figure class="border border-gray-800 rounded-2xl overflow-hidden bg-gray-900/40">
   <div class="aspect-video w-full relative bg-gray-900">
-    {usePrivacySatellite ? (
+    {isStreetView ? (
+      <iframe
+        src={embedUrl}
+        title={`Street View for ${title}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="h-full w-full border-0"
+        allowfullscreen
+      />
+    ) : usePrivacySatellite ? (
       <img
         src={privacySatelliteUrl}
         alt={`Satellite map for ${title}`}
