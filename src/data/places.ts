@@ -51,15 +51,28 @@ export function googleMapsStreetViewEmbedUrl(
   lng: number,
   apiKey?: string,
   heading = 0,
+  location?: string,
 ): string {
+  const streetViewLocation = location ?? `${lat},${lng}`;
+
   if (apiKey) {
-    return `https://www.google.com/maps/embed/v1/streetview?key=${encodeURIComponent(apiKey)}&location=${lat},${lng}&heading=${heading}&pitch=0&fov=90`;
+    return `https://www.google.com/maps/embed/v1/streetview?key=${encodeURIComponent(apiKey)}&location=${encodeURIComponent(streetViewLocation)}&heading=${heading}&pitch=0&fov=90`;
   }
 
-  return `https://maps.google.com/maps?q=&layer=c&cbll=${lat},${lng}&cbp=12,${heading},0,0,0&hl=en&ie=UTF8&hq=&output=svembed`;
+  const query = location ? encodeURIComponent(location) : '';
+  return `https://maps.google.com/maps?q=${query}&layer=c&cbll=${lat},${lng}&cbp=12,${heading},0,0,0&hl=en&ie=UTF8&hq=&output=svembed`;
 }
 
-export function googleMapsStreetViewUrl(lat: number, lng: number, heading = 0): string {
+export function googleMapsStreetViewUrl(
+  lat: number,
+  lng: number,
+  heading = 0,
+  location?: string,
+): string {
+  if (location) {
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}&layer=c`;
+  }
+
   return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}&heading=${heading}&pitch=0&fov=90`;
 }
 
