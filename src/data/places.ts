@@ -52,15 +52,17 @@ export function googleMapsStreetViewEmbedUrl(
   apiKey?: string,
   heading = 0,
   location?: string,
+  fov = 90,
 ): string {
   const streetViewLocation = location ?? `${lat},${lng}`;
 
   if (apiKey) {
-    return `https://www.google.com/maps/embed/v1/streetview?key=${encodeURIComponent(apiKey)}&location=${encodeURIComponent(streetViewLocation)}&heading=${heading}&pitch=0&fov=90`;
+    return `https://www.google.com/maps/embed/v1/streetview?key=${encodeURIComponent(apiKey)}&location=${encodeURIComponent(streetViewLocation)}&heading=${heading}&pitch=0&fov=${fov}`;
   }
 
   const query = location ? encodeURIComponent(location) : '';
-  return `https://maps.google.com/maps?q=${query}&layer=c&cbll=${lat},${lng}&cbp=12,${heading},0,0,0&hl=en&ie=UTF8&hq=&output=svembed`;
+  const zoom = Math.max(0, Math.round((120 - fov) / 15));
+  return `https://maps.google.com/maps?q=${query}&layer=c&cbll=${lat},${lng}&cbp=12,${heading},0,${zoom},0&hl=en&ie=UTF8&hq=&output=svembed`;
 }
 
 export function googleMapsStreetViewUrl(
@@ -68,12 +70,13 @@ export function googleMapsStreetViewUrl(
   lng: number,
   heading = 0,
   location?: string,
+  fov = 90,
 ): string {
   if (location) {
-    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}&layer=c`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location)}&layer=c&heading=${heading}&fov=${fov}`;
   }
 
-  return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}&heading=${heading}&pitch=0&fov=90`;
+  return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}&heading=${heading}&pitch=0&fov=${fov}`;
 }
 
 export function googleMapsDirectionsUrl(origin: string, destination: string): string {
