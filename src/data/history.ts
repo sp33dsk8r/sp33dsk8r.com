@@ -55,8 +55,8 @@ export const historyStops: HistoryStop[] = [
     address: '4382 Westridge Drive, Williamsburg, MI 49684',
     hideAddress: true,
     mapVariant: 'streetview',
-    lat: 44.749995,
-    lng: -85.484343,
+    lat: 44.749761,
+    lng: -85.483788,
     zoom: 18,
   },
   {
