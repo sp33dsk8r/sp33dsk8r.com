@@ -59,7 +59,7 @@ export const historyStops: HistoryStop[] = [
     lat: 44.749761,
     lng: -85.483788,
     zoom: 18,
-    streetViewHeading: 45,
+    streetViewHeading: 35,
     streetViewFov: 105,
   },
   {
