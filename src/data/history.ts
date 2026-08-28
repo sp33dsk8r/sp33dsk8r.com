@@ -23,6 +23,7 @@ export type HistoryStop = {
   lng?: number;
   zoom?: number;
   streetViewHeading?: number;
+  streetViewFov?: number;
 };
 
 export {
@@ -58,6 +59,8 @@ export const historyStops: HistoryStop[] = [
     lat: 44.749761,
     lng: -85.483788,
     zoom: 18,
+    streetViewHeading: 35,
+    streetViewFov: 105,
   },
   {
     id: 'mississippi-1992',

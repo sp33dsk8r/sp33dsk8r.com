@@ -129,6 +129,7 @@ function routeLabel(stop: (typeof historyStops)[number]): string {
                           mapsApiKey || undefined,
                           stop.streetViewHeading ?? 0,
                           stop.address,
+                          stop.streetViewFov ?? 90,
                         )
                       : googleMapsEmbedUrl(
                           stop.lat!,
@@ -145,6 +146,7 @@ function routeLabel(stop: (typeof historyStops)[number]): string {
                           stop.lng!,
                           stop.streetViewHeading ?? 0,
                           stop.address,
+                          stop.streetViewFov ?? 90,
                         )
                       : stop.hideAddress
                         ? googleMapsUrl(stop.lat!, stop.lng!, stop.zoom ?? 12)
